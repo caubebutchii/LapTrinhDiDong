@@ -6,3 +6,9 @@
 
  Coding challenge 2:
  ![alt text](image-1.png)
+
+ Coding challenge 3:
+ ![alt text](image-2.png)
+
+ Conding challenge 4:
+ ![alt text](image-3.png)
