@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // Coding Challenge #1
+        // Mark and John are trying to compare their BMI (Body Mass Index), which is calculated using the formula:
+        // BMI = mass / height ** 2 = mass / (height * height) (mass in kg and height in meter).
+
+        //  Data 1: Marks weights 78 kg and is 1.69 m tall. John weights 92 kg and is 1.95m tall.
+        var MarksWeight = 78;
+        var MarksHeight = 1.69;
+        var JohnsWeight = 92;
+        var JohnsHeight = 1.95;
+
+        var MarksBMI = MarksWeight / (MarksHeight ** 2);
+        var JohnsBMI = JohnsWeight / (JohnsHeight ** 2);
+
+        var markHigherBMI = MarksBMI > JohnsBMI;
+
+        console.log("Data1: ", MarksBMI, JohnsBMI, markHigherBMI);
+
+        // Data 2: Marks weights 95 kg and is 1.88 m tall. John weights 85 kg and is 1.76m tall.
+        MarksWeight = 95;
+        MarksHeight = 1.88;
+        JohnsWeight = 85;
+        JohnsHeight = 1.76;
+
+        MarksBMI = MarksWeight / (MarksHeight ** 2);
+        JohnsBMI = JohnsWeight / (JohnsHeight ** 2);
+        markHigherBMI = MarksBMI > JohnsBMI;
+
+        console.log("Data2: ", MarksBMI, JohnsBMI, markHigherBMI);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
