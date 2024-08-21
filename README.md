@@ -30,9 +30,12 @@
  Developer Skills & Editor Setup
 
  Coding challenge 1:
+![alt text](image-8.png)
 
- Coding challenge 2:
+ JavaScript in the Browser: DOM and Events
+ Coding challenge 1:
 
  Coding challenge 3:
 
  Coding challenge 4:
+ 
