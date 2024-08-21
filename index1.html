@@ -21,7 +21,13 @@
 
         var markHigherBMI = MarksBMI > JohnsBMI;
 
-        console.log("Data1: ", "MarksBMI: ", MarksBMI, "JohnsBMI: ", JohnsBMI, "MarkHigherBMI: ", markHigherBMI);
+        //console.log("Data1: ", "MarksBMI: ", MarksBMI, "JohnsBMI: ", JohnsBMI, "MarkHigherBMI: ", markHigherBMI);
+
+        if (MarksBMI > JohnsBMI) {
+            console.log(`Mark's BMI (${MarksBMI}) is higher than John's BMI (${JohnsBMI})`);
+        } else {
+            console.log(`John's BMI (${JohnsBMI}) is higher than Mark's BMI (${MarksBMI})`);
+        }
 
         // Data 2: Marks weights 95 kg and is 1.88 m tall. John weights 85 kg and is 1.76m tall.
         MarksWeight = 95;
@@ -33,7 +39,55 @@
         JohnsBMI = JohnsWeight / (JohnsHeight ** 2);
         markHigherBMI = MarksBMI > JohnsBMI;
 
-        console.log("Data2: ", "MarksBMI: ", MarksBMI, "JohnsBMI: ", JohnsBMI, "MarkHigherBMI: ", markHigherBMI);
+        //console.log("Data2: ", "MarksBMI: ", MarksBMI, "JohnsBMI: ", JohnsBMI, "MarkHigherBMI: ", markHigherBMI);
+
+
+        //Coding Challenge #2
+
+        if (MarksBMI > JohnsBMI) {
+            console.log(`Mark's BMI (${MarksBMI}) is higher than John's BMI (${JohnsBMI})`);
+        } else {
+            console.log(`John's BMI (${JohnsBMI}) is higher than Mark's BMI (${MarksBMI})`);
+        }
+
+
+        //Coding Challenge #3
+
+        let data1 = [96, 108, 89];
+        let data2 = [88, 91, 110];
+
+        let bonus1_Dolphins = [97, 112, 101];
+        let bonus1_Koalas = [109, 95, 123];
+
+        let bonus2_Dolphins = [97, 112, 101];
+        let bonus2_Koalas = [109, 95, 106];
+
+        let calAvg = (data1, data2) => {
+            let sum1 = 0;
+            let sum2 = 0;
+            for (let i = 0; i <= data1.length - 1; i++) {
+                // console.log("Dolphins: ", data1[i], "Koalas: ", data2[i]);
+                sum1 += data1[i];
+                sum2 += data2[i];
+            }
+
+
+            if (sum1 > sum2 && sum1 >= 100) {
+                console.log("Dolphins win");
+            } else if (sum1 < sum2 && sum2 >= 100) {
+                console.log("Koalas win");
+            } else if (sum1 == sum2 && sum1 >= 100 && sum2 >= 100) {
+                {
+                    console.log("It's a draw");
+                }
+            } else {
+                console.log("No one wins");
+            }
+        }
+
+        calAvg(data1, data2);
+        calAvg(bonus1_Dolphins, bonus1_Koalas);
+        calAvg(bonus2_Dolphins, bonus2_Koalas);
     </script>
 </head>
 
