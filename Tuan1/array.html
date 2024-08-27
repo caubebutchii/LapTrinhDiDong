@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Working With Arrays</title>
+</head>
+<script>
+    // Coding Challenge #1
+    let checkDogs = (dogsJulia, dogsJake) => {
+        var dogsJulia1 = dogsJulia.slice(1, -2)
+        let finalDogs = [...dogsJulia1, ...dogsJake]
+        finalDogs.forEach((dog, index) => {
+            if(dog >= 3)
+                console.log(`Dog number ${index + 1} is an adult, and is ${dog} years old`);
+            else
+                console.log(`Dog number ${index + 1} is still a puppy`);
+        })  
+    }
+    dogsJulia1 = [3, 5, 2, 12, 7]
+    dogsJake1 = [4, 1, 15, 8, 3]
+    checkDogs(dogsJulia1, dogsJake1)
+
+    console.log('---------------------------------')
+    dogsJulia2 = [9, 16, 6, 8, 3]
+    dogsJake2 = [10, 5, 6, 1, 4]
+    checkDogs(dogsJulia2, dogsJake2)
+
+    // Coding Challenge #2
+    let calcAverageHumanAge = (dogs) =>
+    {
+        let dogAgeInHuman = dogs.map((dog) => {
+            if(dog <= 2)
+                return 2 * dog;
+            else
+                return 16 + dog * 4;
+        })
+        
+        let bigDogs = dogAgeInHuman.filter((dog) => {
+            return dog >= 18
+        })
+        
+        let averageAge = bigDogs.reduce((acc, dog) => {
+            return acc + dog;
+        }, 0) / bigDogs.length;
+        return averageAge
+    }
+
+    let avg1 = calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3])
+    let avg2 = calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4])
+    console.log(avg1, avg2)
+
+
+    
+</script>
+<body>
+    
+</body>
+</html>
