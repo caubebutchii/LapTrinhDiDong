@@ -16,7 +16,7 @@
             return newArr
         }
 
-        console.log('Test myMap: ', arr.myMap((item) => item * 2));
+        console.log('Test myMap, double all values in arr: ', arr.myMap((item) => item * 2));
 
         // filter
         Array.prototype.myFilter = function(callback) {
@@ -28,7 +28,7 @@
             return newArr
         }
 
-        console.log('Test myFilter: ', arr.myFilter((item) => item % 2 === 0));
+        console.log('Test myFilter, filter all ele that return 0 when divide by 2: ', arr.myFilter((item) => item % 2 === 0));
 
         // some
         Array.prototype.mySome = function(callback) {
@@ -39,7 +39,7 @@
             return false
         }
 
-        console.log('Test mySome: ', arr.mySome((item) => item % 2 === 0));
+        console.log('Test mySome, check if there is any arr match the condition: ', arr.mySome((item) => item % 2 === 0));
 
         // every
         Array.prototype.myEvery = function(callback) {
@@ -50,7 +50,7 @@
             return true
         }
 
-        console.log('Test myEvery: ', arr.myEvery((item) => item % 2 === 0));
+        console.log('Test myEvery, check if all ele match the condition: ', arr.myEvery((item) => item % 2 === 0));
 
         // reduce
         Array.prototype.myReduce = function(callback, accelerator) {
@@ -64,7 +64,7 @@
             return accelerator
         }
 
-        console.log('Test myReduce: ', arr.myReduce((acc, curr) => acc * curr));
+        console.log('Test myReduce, just reduce by multiply all ele together: ', arr.myReduce((acc, curr) => acc * curr));
 
         // find
         Array.prototype.myFind = function(callback) {
@@ -74,8 +74,30 @@
             return undefined
         }
 
-        console.log('Test myFind: ', arr.myFind((item) => item === 5));
-        console.log('Test myFind: ', arr.myFind((item) => item === 11));
+        console.log('Test myFind, find value 5: ', arr.myFind((item) => item === 5));
+        console.log('Test myFind, fiund value 11: ', arr.myFind((item) => item === 11));
+
+
+        // forEach
+        Array.prototype.myForEach = function(callback) {
+            for (var i = 0; i < this.length; i++)
+                callback(this[i], i, this)
+        }
+
+        console.log('Test myForEach, just log out the item: ')
+        arr.myForEach((item) => console.log(`This is item: ${item}`))
+
+        // findIndex
+        Array.prototype.myFindIndex = function(callback) {
+            for (var i = 0; i < this.length; i++) {
+                if (callback(this[i], i, this))
+                    return i
+            }
+
+            return -1
+        }
+
+        console.log('Test myFindIndex, find the index of value 5: ', arr.myFindIndex((item) => item === 5));
     </script>
 </head>
 
