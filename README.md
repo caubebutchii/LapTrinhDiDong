@@ -34,7 +34,8 @@
 
  JavaScript in the Browser: DOM and Events
  Coding challenge 1:
-
+ ![alt text](image-5.png)
+ ![alt text](image-6.png)
 
  Data Structures, Modern Operators and Strings
  Coding challenge 1:
@@ -45,6 +46,17 @@
 
  Coding challenge 3:
  ![alt text](image-1.png)
+
+
+ A Closer Look at Functions
+ ------
+ Working With Arrays
+
+ OOP
+ Coding challenge 1, 2:
+ ![alt text](image-4.png)
+
+ Coding challenge 3:
  
 Thuc hanh JS tuan 2
  Rewrite array functions

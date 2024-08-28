@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,11 +12,11 @@
         var dogsJulia1 = dogsJulia.slice(1, -2)
         let finalDogs = [...dogsJulia1, ...dogsJake]
         finalDogs.forEach((dog, index) => {
-            if(dog >= 3)
+            if (dog >= 3)
                 console.log(`Dog number ${index + 1} is an adult, and is ${dog} years old`);
             else
                 console.log(`Dog number ${index + 1} is still a puppy`);
-        })  
+        })
     }
     dogsJulia1 = [3, 5, 2, 12, 7]
     dogsJake1 = [4, 1, 15, 8, 3]
@@ -27,19 +28,18 @@
     checkDogs(dogsJulia2, dogsJake2)
 
     // Coding Challenge #2,3
-    let calcAverageHumanAge = (dogs) =>
-    {
+    let calcAverageHumanAge = (dogs) => {
         let dogAgeInHuman = dogs.map((dog) => {
-            if(dog <= 2)
+            if (dog <= 2)
                 return 2 * dog;
             else
                 return 16 + dog * 4;
         })
-        
+
         let bigDogs = dogAgeInHuman.filter((dog) => {
             return dog >= 18
         })
-        
+
         let averageAge = bigDogs.reduce((acc, dog) => {
             return acc + dog;
         }, 0) / bigDogs.length;
@@ -51,13 +51,24 @@
     console.log(avg1, avg2)
 
     // Coding Challenge #4 
-    const dogs = [ 
-        { weight: 22, curFood: 250, owners: ['Alice', 'Bob'] }, 
-        { weight: 8, curFood: 200, owners: ['Matilda'] }, 
-        { weight: 13, curFood: 275, owners: ['Sarah', 'John'] }, 
-        { weight: 32, curFood: 340, owners: ['Michael'] }, 
-    ]; 
-    
+    const dogs = [{
+        weight: 22,
+        curFood: 250,
+        owners: ['Alice', 'Bob']
+    }, {
+        weight: 8,
+        curFood: 200,
+        owners: ['Matilda']
+    }, {
+        weight: 13,
+        curFood: 275,
+        owners: ['Sarah', 'John']
+    }, {
+        weight: 32,
+        curFood: 340,
+        owners: ['Michael']
+    }, ];
+
     let recommendedFoods = dogs.forEach((dog) => {
         dog.recommendedFood = Math.trunc(dog.weight ** 0.75 * 28);
     })
@@ -65,7 +76,7 @@
 
     let sarahDog = dogs.filter(dog => {
         return dos.owners.includes('Sarah')
-    }) 
+    })
     console.log(sarahDog)
 
     let dogsEatTooMuch = dogs.filter((dog) => {
@@ -76,23 +87,23 @@
         return dog.curFood < dog.recommendedFood * 0.9
     })
 
-    dogsEatTooMuch.forEach((dog) =>{
+    dogsEatTooMuch.forEach((dog) => {
         console.log(`${dog.owners.join(' and ')}'s dog eat too much`)
     })
 
-    dogsEatTooLittle.forEach((dog) =>{
+    dogsEatTooLittle.forEach((dog) => {
         console.log(`${dog.owners.join(' and ')}'s dog eat too little`)
     })
 
     recommendedFoods.forEach((dog) => {
-        if(dog.curFood === dog.recommendedFood)
+        if (dog.curFood === dog.recommendedFood)
             console.log('true, this dog eat exactly the right amount')
         else
             console.log('false, this dog eat too much or too little')
     })
 
     recommendedFoods.forEach((dog) => {
-        if(dog.curFood >= dog.recommendedFood * 0.9 && dog.curFood <= dog.recommendedFood * 1.1)
+        if (dog.curFood >= dog.recommendedFood * 0.9 && dog.curFood <= dog.recommendedFood * 1.1)
             console.log('true, this dog eat an okay amount')
         else
             console.log('false, this dog eat too much or too little')
@@ -101,10 +112,16 @@
     let rightAmount = recommendedFoods.filter((dog) => {
         return dog.curFood >= dog.recommendedFood * 0.9 && dog.curFood <= dog.recommendedFood * 1.1
     })
+    console.log('rightAmount', rightAmount)
 
-    // let dogsCopyAscendingByRmdFood = 
+    let sortedDogs = dogs.slice().sort((a, b) => {
+        return a.recommendedFood - b.recommendedFood
+    })
+    console.log('sortedDogs', sortedDogs)
 </script>
+
 <body>
-    
+
 </body>
+
 </html>

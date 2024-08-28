@@ -1,27 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JavaScript in the Browser: DOM and Events</title>
 </head>
+<style>
+    .again {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 100px;
+        height: 100px;
+        background-color: #333;
+        text-align: center;
+        line-height: 100px;
+        color: white;
+        cursor: pointer;
+    }
+    
+    input {
+        margin: 10px;
+    }
+</style>
+
+<body>
+    <div class="info">
+        message
+        <input type="text">
+        <br> number
+        <input type="text">
+        <br> score
+        <input type="text">
+        <br> guess
+        <input type="text">
+    </div>
+    <div>
+        <h1>Score</h1>
+        <span class="number" id="num">20</span>
+        <h1>secretNumber</h1>
+        <span class="number" id="score">20</span>
+    </div>
+    <div class="again">
+        Again!
+    </div>
+</body>
+
 <script>
-//     Your tasks: 
-// 1. Select the element with the 'again' class and attach a click event handler 
-// 2. In the handler function, restore initial values of the 'score' and 
-// 'secretNumber' variables 
-// 3. Restore the initial conditions of the message, number, score and guess input 
-// fields 
-// 4. Also restore the original background color (#222) and number width (15rem)
+    //     Your tasks: 
+    // 1. Select the element with the 'again' class and attach a click event handler 
+    // 2. In the handler function, restore initial values of the 'score' and 
+    // 'secretNumber' variables 
+    // 3. Restore the initial conditions of the message, number, score and guess input 
+    // fields 
+    // 4. Also restore the original background color (#222) and number width (15rem)
 
     var ele = document.querySelector('.again')
-    ele.addEventListener('click', function(){
+    console.log(ele)
+    ele.addEventListener('click', function() {
         document.querySelector('body').style.backgroundColor = '#222';
         document.querySelector('.number').style.width = '15rem';
+        document.querySelector('#num').innerHTML = 0;
+        document.querySelector('#score').innerHTML = 0;
+        document.querySelector('.info').style.color = 'white'
+        document.querySelector('div:nth-child(2)').style.color = 'white'
     });
-    
 </script>
-<body>
-    
-</body>
+
 </html>
