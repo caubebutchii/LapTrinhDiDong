@@ -34,6 +34,7 @@
 
  JavaScript in the Browser: DOM and Events
  Coding challenge 1:
+ 
 
  Data Structures, Modern Operators and Strings
  Coding challenge 1:
@@ -45,3 +46,7 @@
  Coding challenge 3:
  ![alt text](image-1.png)
  
+Thuc hanh JS tuan 2
+ Rewrite array functions
+ - map, filter, some, every, reduce, find
+ ![alt text](image-2.png)

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rewrite array func</title>
+    <script>
+        const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        console.log("Original array: ", arr);
+        // map
+        Array.prototype.myMap = function(callback) {
+            var newArr = []
+            for (var i = 0; i < this.length; i++)
+                newArr.push(callback(this[i], i, this))
+            return newArr
+        }
+
+        console.log('Test myMap: ', arr.myMap((item) => item * 2));
+
+        // filter
+        Array.prototype.myFilter = function(callback) {
+            var newArr = []
+            for (var i = 0; i < this.length; i++) {
+                if (callback(this[i], i, this))
+                    newArr.push(callback(this[i], i, this))
+            }
+            return newArr
+        }
+
+        console.log('Test myFilter: ', arr.myFilter((item) => item % 2 === 0));
+
+        // some
+        Array.prototype.mySome = function(callback) {
+            for (var i = 0; i < this.length; i++) {
+                if (callback(this[i], i, this))
+                    return true
+            }
+            return false
+        }
+
+        console.log('Test mySome: ', arr.mySome((item) => item % 2 === 0));
+
+        // every
+        Array.prototype.myEvery = function(callback) {
+            for (var i = 0; i < this.length; i++) {
+                if (!callback(this[i], i, this))
+                    return false
+            }
+            return true
+        }
+
+        console.log('Test myEvery: ', arr.myEvery((item) => item % 2 === 0));
+
+        // reduce
+        Array.prototype.myReduce = function(callback, accelerator) {
+            var i = 0
+            if (accelerator === undefined) {
+                accelerator = this[0]
+                i = 1
+            }
+            for (; i < this.length; i++)
+                accelerator = callback(accelerator, this[i], i, this)
+            return accelerator
+        }
+
+        console.log('Test myReduce: ', arr.myReduce((acc, curr) => acc * curr));
+
+        // find
+        Array.prototype.myFind = function(callback) {
+            for (var i = 0; i < this.length; i++)
+                if (callback(this[i], i, this))
+                    return this[i]
+            return undefined
+        }
+
+        console.log('Test myFind: ', arr.myFind((item) => item === 5));
+        console.log('Test myFind: ', arr.myFind((item) => item === 11));
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
