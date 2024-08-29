@@ -24,18 +24,22 @@
             } else if (avg[1] >= 2 * avg[0]) {
                 console.log(`Koalas win (${avg[1]} vs. ${avg[0]})`);
             }
+            else
+                console.log("Ignore draw");
+                
         }
         let data = [
             [44, 23, 71],
             [65, 54, 49]
         ];
 
-        console.log("data1")
+        console.log("data1", data);
         checkWinner(data);
 
-        console.log("data2")
+        console.log("data2");
         let bonus1_Dolphins = [85, 54, 41];
         let bonus1_Koalas = [23, 34, 27];
+        console.log("Dolphins: ", bonus1_Dolphins, "Koalas: ", bonus1_Koalas);
         checkWinner([bonus1_Dolphins, bonus1_Koalas]);
 
         //Coding Challenge #2

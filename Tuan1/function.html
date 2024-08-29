@@ -8,47 +8,51 @@
     <script>
         // Coding Challenge #1
         const poll = { 
-            question: "What is your favourite programming language?", 
-            options: ["0: JavaScript", "1: Python", "2: Rust", "3: C++"], 
-            // This generates [0, 0, 0, 0]. More in the next section! 
-            answers: new Array(4).fill(0),
-            registerNewAnswer: function()
-            {
-                let answer = prompt(`${this.question}\n${this.options.join('\n')}`);
-                if(answer >= 0 && answer <= 3)
-                {
-                    this.answers[answer]++;
-                }
-                else
-                {
-                    alert("Invalid answer");
-                }
-                this.displayResults('string');
-            },
-            displayResults: function(type)
-            {
-                if(type === 'array')
-                    console.log(this.answers);
-                else 
-                    console.log(`Poll results are ${this.answers.join(', ')}`);
-            }
-        }
+        question: "What is your favourite programming language?", 
+        options: ["0: JavaScript", "1: Python", "2: Rust", "3: C++"], 
         
-        // Coding Challenge #2
-        // (function () { 
-        //     const header = document.querySelector('h1'); 
-        //     header.style.color = 'red'; 
-        // })().addEventListener('click', function () { 
-        //     this.style.color = 'blue'
-        //     console.log("h1 was clicked");
-        // });
+        answers: new Array(4).fill(0),
+        registerNewAnswer: function()
+        {
+            let answer = prompt(`${this.question}\n${this.options.join('\n')}`);
+            if(answer >= 0 && answer <= 3)
+            {
+                this.answers[answer]++;
+            }
+            else
+            {
+                alert("Invalid answer");
+            }
+            this.displayResults('string');
+        },
+        displayResults: function(type)
+        {
+            if(type === 'array')
+                console.log(this.answers);
+            else 
+                console.log(`Poll results are ${this.answers.join(', ')}`);
+        }
+    }
     </script>
 </head>
-
 <body>
-    <h1>Coding Challenge #2</h1>
+
+    <h1 >Coding Challenge #2</h1>
     <button onclick="poll.registerNewAnswer()">Answer poll</button>
 
 </body>
+<script>
+    
+    
+    // Coding Challenge #2
 
+    (function () {
+        const header = document.querySelector('h1');
+        header.style.color = 'red';
+        document.querySelector('body').addEventListener('click', function () {
+            header.style.color = 'blue';
+            console.log("Hello");
+        });
+    })();
+</script>
 </html>

@@ -18,7 +18,7 @@
 
         var markHigherBMI = MarksBMI > JohnsBMI;
 
-        //console.log("Data1: ", "MarksBMI: ", MarksBMI, "JohnsBMI: ", JohnsBMI, "MarkHigherBMI: ", markHigherBMI);
+        console.log("Data1: ", "MarksBMI: ", MarksBMI, "JohnsBMI: ", JohnsBMI, "MarkHigherBMI: ", markHigherBMI);
 
         if (MarksBMI > JohnsBMI) {
             console.log(`Mark's BMI (${MarksBMI}) is higher than John's BMI (${JohnsBMI})`);
@@ -36,7 +36,7 @@
         JohnsBMI = JohnsWeight / (JohnsHeight ** 2);
         markHigherBMI = MarksBMI > JohnsBMI;
 
-        //console.log("Data2: ", "MarksBMI: ", MarksBMI, "JohnsBMI: ", JohnsBMI, "MarkHigherBMI: ", markHigherBMI);
+        console.log("Data2: ", "MarksBMI: ", MarksBMI, "JohnsBMI: ", JohnsBMI, "MarkHigherBMI: ", markHigherBMI);
 
 
         //Coding Challenge #2
@@ -48,7 +48,7 @@
         }
 
 
-        //Coding Challenge #3
+        // //Coding Challenge #3
 
         let data1 = [96, 108, 89];
         let data2 = [88, 91, 110];
@@ -81,6 +81,11 @@
                 console.log("No one wins");
             }
         }
+        console.log(
+        `
+Data 1: Dolphins score 96, 108 and 89. Koalas score 88, 91 and 110
+Data Bonus 1: Dolphins score 97, 112 and 101. Koalas score 109, 95 and 123
+Data Bonus 2: Dolphins score 97, 112 and 101. Koalas score 109, 95 and 106`)
 
         calAvg(data1, data2);
         calAvg(bonus1_Dolphins, bonus1_Koalas);

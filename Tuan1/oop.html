@@ -23,20 +23,20 @@
         console.log(`New speed after brake: ${this.speed}`)
     }
 
-    let car1 = new Car('BMW', 120)
-    let car2 = new Car('Mercedes', 95)
-    car1.accelerate()
-    car1.accelerate()
-    car1.brake()
-    car2.accelerate()
-    car2.accelerate()
-    car2.brake()
+    // let car1 = new Car('BMW', 120)
+    // let car2 = new Car('Mercedes', 95)
+    // car1.accelerate()
+    // car1.accelerate()
+    // car1.brake()
+    // car2.accelerate()
+    // car2.accelerate()
+    // car2.brake()
 
-    console.log('---------------------------------')
+    // console.log('---------------------------------')
 
-    // Coding Challenge #2
-    // use ES6 class
-    class Car2 {
+    // // Coding Challenge #2
+    // // use ES6 class
+    class CarCl {
         constructor(make, speed) {
             this.make = make;
             this.speed = speed;
@@ -56,11 +56,73 @@
 
     }
 
-    let car3 = new Car2('Ford', 120)
-    car3.accelerate()
-    car3.accelerate()
-    car3.brake()
-    console.log(car3.speedUS)
+    // let car3 = new CarCl('Ford', 120)
+    // car3.accelerate()
+    // car3.accelerate()
+    // car3.brake()
+    // console.log(car3.speedUS)
+
+    // Coding Challenge #3
+    function EV(make, speed, charge) {
+        Car.call(this, make, speed)
+        this.charge = charge
+        
+        EV.prototype.chargeBattery = function(chargeTo) {
+            this.charge = chargeTo
+            console.log(`Battery charge: ${this.charge}`)
+        }
+
+        EV.prototype.accelerate = function() {
+            this.speed = this.speed + 20
+            this.charge = this.charge - this.charge * 0.01
+            console.log(`Tesla going at ${this.speed} km/h, with a charge of ${this.charge}%`)
+        }
+
+        EV.prototype.brake = function() {
+            this.speed = this.speed - 10
+            console.log(`Tesla going at ${this.speed} km/h, with a charge of ${this.charge}%`)
+        }
+    }
+    let teslaCar = new EV('Tesla', 120, 100)
+    console.log("Coding Challenge #3")
+    teslaCar.accelerate()
+    teslaCar.accelerate()
+    teslaCar.brake()
+    teslaCar.chargeBattery(90)
+
+    // Coding Challenge #4
+    class EVCl extends CarCl {
+        #charge
+        constructor(make, speed, charge) {
+            super(make, speed)
+            this.#charge = charge
+        }
+
+        chargeBattery(chargeTo) {
+            this.#charge = chargeTo
+            console.log(`Battery charge: ${this.#charge}`)
+        }
+
+        accelerate() {
+            this.speed = this.speed + 20
+            this.#charge = this.#charge - this.#charge * 0.01
+            console.log(`Tesla going at ${this.speed} km/h, with a charge of ${this.#charge}%`)
+        }
+
+        brake() {
+            this.speed = this.speed - 10
+            console.log(`Tesla going at ${this.speed} km/h, with a charge of ${this.#charge}%`)
+        }
+
+
+    }
+    let teslaCar2 = new EVCl('Rivian', 120, 23)
+    console.log("Coding Challenge #4")
+    teslaCar2.accelerate()
+    teslaCar2.accelerate()
+    teslaCar2.brake()
+    teslaCar2.chargeBattery(90)
+    console.log(teslaCar2.speedUS)
 </script>
 
 <body>

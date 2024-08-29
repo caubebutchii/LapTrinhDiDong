@@ -5,116 +5,160 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Structures, Modern Operators and Strings</title>
-    <script>
-        //Coding Challenge #1
-        const game = {
-            team1: 'Bayern Munich',
-            team2: 'Borrussia Dortmund',
-            players: [
-                [
-                    'Neuer',
-                    'Pavard',
-                    'Martinez',
-                    'Alaba',
-                    'Davies',
-                    'Kimmich',
-                    'Goretzka',
-                    'Coman',
-                    'Muller',
-                    'Gnarby',
-                    'Lewandowski',
-                ],
-                [
-                    'Burki',
-                    'Schulz',
-                    'Hummels',
-                    'Akanji',
-                    'Hakimi',
-                    'Weigl',
-                    'Witsel',
-                    'Hazard',
-                    'Brandt',
-                    'Sancho',
-                    'Gotze',
-                ],
-            ],
-            score: '4:0',
-            scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
-            date: 'Nov 9th, 2037',
-            odds: {
-                team1: 1.33,
-                x: 3.25,
-                team2: 6.25,
-            },
-        }
-
-        let gk = game.players[0][0];
-        let fieldPlayers = game.players[0].slice(1);
-        let allPlayers = [...game.players[0], ...game.players[1]];
-        let players1Final = [...game.players[0], 'Thiago', 'Coutinho', 'Perisic'];
-        let team1 = game.odds.team1;
-        let draw = game.odds.x;
-        let team2 = game.odds.team2;
-        const printGoals = function(...players) {
-            console.log(`${players.length} goals were scored`);
-        }
-        team1 < team2 && console.log('Team 1 is more likely to win');
-
-
-        // Coding Challenge #2
-        game.scored.forEach((player, i) => {
-            console.log(`Goal ${i + 1}: ${player}`);
-        });
-
-        let odds = 0
-        for (const [team, odd] of Object.entries(game.odds)) {
-            odds += odd;
-            console.log(`Odd of victory ${game[team] || 'draw'}: ${odd}`);
-        }
-
-        let scorers = {};
-        for (const player of game.scored) {
-            scorers[player] ? scorers[player]++ : scorers[player] = 1;
-        }
-        console.log(scorers);
-
-
-        //Coding Challenge #3
-        const gameEvents = new Map([
-            [17, 'GOAL'],
-            [36, 'Substitution'],
-            [47, 'GOAL'],
-            [61, 'Substitution'],
-            [64, 'Yellow card'],
-            [69, 'Red card'],
-            [70, 'Substitution'],
-            [72, 'Substitution'],
-            [76, 'GOAL'],
-            [80, 'GOAL'],
-            [92, 'Yellow card'],
-        ]);
-
-        const events = [...new Set(gameEvents.values())];
-        console.log(events);
-        gameEvents.delete(64);
-        console.log(gameEvents);
-        console.log(`An event happened, on average, every ${90 / gameEvents.size} minutes`);
-
-        for (const [min, e] of gameEvents) {
-            console.log(
-                `[${min <= 45 ? 'FIRST HALF' : 'SECOND HALF'}] ${min}: ${e}
-                `
-            )
-        }
-
-        // Coding Challenge #4
-        document.body.append(document.createElement('textarea'));
-        document.body.append(document.createElement('button'));
-    </script>
+    
 </head>
 
 <body>
-
+    <textarea name="text" id="text" cols="30" rows="10"></textarea>
+    <button>Convert</button>
 </body>
+<script>
+    //Coding Challenge #1
+    const game = {
+        team1: 'Bayern Munich',
+        team2: 'Borrussia Dortmund',
+        players: [
+            [
+                'Neuer',
+                'Pavard',
+                'Martinez',
+                'Alaba',
+                'Davies',
+                'Kimmich',
+                'Goretzka',
+                'Coman',
+                'Muller',
+                'Gnarby',
+                'Lewandowski',
+            ],
+            [
+                'Burki',
+                'Schulz',
+                'Hummels',
+                'Akanji',
+                'Hakimi',
+                'Weigl',
+                'Witsel',
+                'Hazard',
+                'Brandt',
+                'Sancho',
+                'Gotze',
+            ],
+        ],
+        score: '4:0',
+        scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+        date: 'Nov 9th, 2037',
+        odds: {
+            team1: 1.33,
+            x: 3.25,
+            team2: 6.25,
+        },
+    }
 
+    let gk = game.players[0][0];
+    let fieldPlayers = game.players[0].slice(1);
+    let allPlayers = [...game.players[0], ...game.players[1]];
+    let players1Final = [...game.players[0], 'Thiago', 'Coutinho', 'Perisic'];
+    let team1 = game.odds.team1;
+    let draw = game.odds.x;
+    let team2 = game.odds.team2;
+
+    const printGoals = function (...players) {
+        // print each player name to the console
+        for (let i = 0; i < players.length; i++) {
+            console.log(players[i]);
+        }
+        console.log(`${players.length} goals were scored`);
+    }
+
+    // printGoals('Davies', 'Muller', 'Lewandowski', 'Kimmich');
+    // console.log('-------------------');
+    // printGoals(... game.scored);
+
+    // team1 < team2 && console.log('Team 1 is more likely to win');
+    // team1 > team2 && console.log('Team 2 is more likely to win');
+
+    // Coding Challenge #2
+    // game.scored.forEach((player, i) => {
+    //     console.log(`Goal ${i + 1}: ${player}`);
+    // });
+
+    // let odds = 0
+    // for (const [team, odd] of Object.entries(game.odds)) {
+    //     odds += odd;
+    //     console.log(`Odd of victory ${game[team] || 'draw'}: ${odd}`);
+    // }
+
+    // let scorers = {};
+    // for (const player of game.scored) {
+    //     scorers[player] ? scorers[player]++ : scorers[player] = 1;
+    // }
+    // console.log(scorers);
+
+
+    // //Coding Challenge #3
+    // const gameEvents = new Map([
+    //     [17, 'GOAL'],
+    //     [36, 'Substitution'],
+    //     [47, 'GOAL'],
+    //     [61, 'Substitution'],
+    //     [64, 'Yellow card'],
+    //     [69, 'Red card'],
+    //     [70, 'Substitution'],
+    //     [72, 'Substitution'],
+    //     [76, 'GOAL'],
+    //     [80, 'GOAL'],
+    //     [92, 'Yellow card'],
+    // ]);
+
+    // const events = [...new Set(gameEvents.values())];
+    // console.log(events);
+    // gameEvents.delete(64);
+    // console.log(gameEvents);
+    // console.log(`An event happened, on average, every ${90 / gameEvents.size} minutes`);
+
+    // for (const [min, e] of gameEvents) {
+    //     console.log(
+    //         `[${min <= 45 ? 'FIRST HALF' : 'SECOND HALF'}] ${min}: ${e}
+    //         `
+    //     )
+    // }
+
+    // // Coding Challenge #4
+//         Write a program that receives a list of variable names written in underscore_case
+// and convert them to camelCase.
+// The input will come from a textarea inserted into the DOM (see code below to
+// insert the elements), and conversion will happen when the button is pressed.
+// Test data (pasted to textarea, including spaces):
+// underscore_case
+// first_name
+// Some_Variable
+// calculate_AGE
+// delayed_departure
+// Should produce this output (5 separate console.log outputs):
+// underscoreCase ✅
+// firstName ✅✅
+// someVariable ✅✅✅
+// calculateAge ✅✅✅✅
+// delayedDeparture ✅✅✅✅✅
+    let text = document.querySelector('#text');
+    const btn = document.querySelector('button');
+    let textInput = text.value;
+    console.log(textInput);
+
+    const handleText = function (t)
+    {
+        for(const [i, v] of t.entries())
+        {
+            console.log(i, v)
+        }
+    }
+
+    btn.addEventListener('click', function () {
+        const textArr = text.split('\n');
+        console.log(textArr);
+        
+        handleText(textArr);
+    });
+</script>
 </html>
