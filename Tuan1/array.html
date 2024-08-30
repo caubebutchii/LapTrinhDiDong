@@ -71,19 +71,19 @@
     }, ];
 
     let recommendedFoods = dogs.map((dog) => {
-        dog.recommendedFood = Math.trunc(dog.weight ** 0.75 * 28);
+        dog.recommendedFood = dog.weight ** 0.75 * 28
         return dog;
     })
     console.log("recommendedFoods", recommendedFoods)
 
-    // let sarahDog = dogs.forEach(dog => {
-    //     if (dog.owners.includes('Sarah'))
-    //     {
-    //         console.log("Found a dog owned by Sarah")
-    //         console.log(dog)
-    //         console.log('Sarah dog eat too', dog.curFood > dog.recommendedFood ? 'much' : 'little')
-    //     }
-    // })
+    let sarahDog = dogs.forEach(dog => {
+        if (dog.owners.includes('Sarah'))
+        {
+            console.log("Found a dog owned by Sarah")
+            console.log(dog)
+            console.log('Sarah dog eat too', dog.curFood > dog.recommendedFood ? 'much' : 'little')
+        }
+    })
 
 
 
@@ -94,48 +94,48 @@
 
     
 
-    // let dogsEatTooMuch = dogs.filter((dog) => {
-    //     return dog.curFood > dog.recommendedFood * 1.1;
-    // });
+    let dogsEatTooMuch = dogs.filter((dog) => {
+        return dog.curFood > dog.recommendedFood * 1.1;
+    });
 
-    // let dogsEatTooLittle = dogs.filter((dog) => {
-    //     return dog.curFood < dog.recommendedFood * 0.9;
-    // });
+    let dogsEatTooLittle = dogs.filter((dog) => {
+        return dog.curFood < dog.recommendedFood * 0.9;
+    });
 
-    // console.log(dogsEatTooMuch)
-    // console.log(dogsEatTooLittle)
+    console.log(dogsEatTooMuch)
+    console.log(dogsEatTooLittle)
 
-    // dogsEatTooMuch.forEach((dog) => {
-    //     console.log(`${dog.owners.join(' and ')}'s dog eat too much`);
-    // });
+    dogsEatTooMuch.forEach((dog) => {
+        console.log(`${dog.owners.join(' and ')}'s dog eat too much`);
+    });
 
-    // dogsEatTooLittle.forEach((dog) => {
-    //     console.log(`${dog.owners.join(' and ')}'s dog eat too little`);
-    // });
+    dogsEatTooLittle.forEach((dog) => {
+        console.log(`${dog.owners.join(' and ')}'s dog eat too little`);
+    });
 
-    // recommendedFoods.forEach((dog) => {
-    //     if (dog.curFood === dog.recommendedFood)
-    //         console.log('true, this dog eat exactly the right amount')
-    //     else
-    //         console.log('false, this dog eat too much or too little')
-    // })
+    recommendedFoods.forEach((dog) => {
+        if (dog.curFood === dog.recommendedFood)
+            console.log('true, this dog eat exactly the right amount')
+        else
+            console.log('false, this dog eat too much or too little')
+    })
 
-    // recommendedFoods.forEach((dog) => {
-    //     if (dog.curFood >= dog.recommendedFood * 0.9 && dog.curFood <= dog.recommendedFood * 1.1)
-    //         console.log('true, this dog eat an okay amount')
-    //     else
-    //         console.log('false, this dog eat too much or too little')
-    // })
+    recommendedFoods.forEach((dog) => {
+        if (dog.curFood >= dog.recommendedFood * 0.9 && dog.curFood <= dog.recommendedFood * 1.1)
+            console.log('true, this dog eat an okay amount')
+        else
+            console.log('false, this dog eat too much or too little')
+    })
 
-    // let rightAmount = recommendedFoods.filter((dog) => {
-    //     return dog.curFood >= dog.recommendedFood * 0.9 && dog.curFood <= dog.recommendedFood * 1.1
-    // })
-    // console.log('rightAmount', rightAmount)
+    let rightAmount = recommendedFoods.filter((dog) => {
+        return dog.curFood >= dog.recommendedFood * 0.9 && dog.curFood <= dog.recommendedFood * 1.1
+    })
+    console.log('rightAmount', rightAmount)
 
-    // let sortedDogs = dogs.slice().sort((a, b) => {
-    //     return a.recommendedFood - b.recommendedFood
-    // })
-    // console.log('sortedDogs', sortedDogs)
+    let sortedDogs = dogs.slice().sort((a, b) => {
+        return a.recommendedFood - b.recommendedFood
+    })
+    console.log('sortedDogs by rcmd food', sortedDogs)
 </script>
 
 <body>
