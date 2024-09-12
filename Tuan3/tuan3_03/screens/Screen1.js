@@ -1,21 +1,19 @@
 import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
 
-export default function App() {
+export default function Screen1({navigation}) {
   return (
     <View style={styles.container}>
       <View
         style={{
           justifyContent: 'center',
           alignItems: 'center',
-          marginTop: 55,
         }}>
         <Image
-          source={require('./assets/lock.png')}
+          source={require('../assets/Ellipse 8.png')}
           style={{
-            
-            width: 104.9393081665039,
-            height: 116.95268249511719            ,
+            marginTop: 52,
+            width: 140,
+            height: 140,
           }}
         />
       </View>
@@ -24,14 +22,12 @@ export default function App() {
             justifyContent: 'center',
             alignItems: 'center',
             marginTop: 71,
-            
-            border: '1px solid #000000',
           }}>
           <Text
             style={
               ({
-                width: 133,
-            height: 58,
+                width: 189,
+                height: 58,
                 fontFamily: 'Roboto',
                 fontSize: 25,
                 fontWeight: 'bold',
@@ -39,7 +35,6 @@ export default function App() {
                 lineHeight: 32,
                 color: '#000000FF',
                 textAlign: 'center',
-                flexWrap: 'wrap',
               })
             }>
             GROW YOUR BUSINESS
@@ -49,21 +44,18 @@ export default function App() {
         style={{
           justifyContent: 'space-between',
           alignItems: 'center',
-          marginTop: 44,
-          
+          marginTop: 52,
         }}>
         <Text
           style={{
-            height: 53,
-          width: 302,
             textAlign: 'center',
             fontSize: 15,
             fontWeight: 'bold',
-            
+            height: 36,
+            width: 302,
             fontFamily: 'Roboto',
             letterSpacing: 0,
-            lineHeight: 32,
-            color: '#000000FF'
+            lineHeight: 32
           }}>
           We will help you to grow your business using online server
         </Text>
@@ -74,7 +66,7 @@ export default function App() {
           flexDirection: 'row',
           justifyContent: 'space-around',
           alignItems: 'center',
-          marginTop: 40,
+          marginTop: 75,
         }}>
         <TouchableOpacity>
           <View style={styles.button}>
@@ -87,28 +79,6 @@ export default function App() {
             <Text style={styles.buttonText}>SIGN UP</Text>
           </View>
         </TouchableOpacity>
-      </View>
-
-      <View
-      style={{
-        
-            justifyContent: 'center',
-            alignItems: 'center',
-            marginTop: 16
-      }}>
-        <Text
-        style={{
-          height: 53,
-            width: 302,
-          textAlign: 'center',
-            fontSize: 18,
-            fontWeight: 'bold',
-            
-            fontFamily: 'Roboto',
-            letterSpacing: 0,
-            lineHeight: 32,
-            color: '#000000FF'
-        }}>HOW WE WORK?</Text>
       </View>
     </View>
   );
