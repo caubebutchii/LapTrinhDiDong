@@ -4,7 +4,7 @@ import { LinearGradient } from "expo-linear-gradient";
 export default function Screen4({ navigation }) {
   return (
     <LinearGradient
-      colors={["#C7F4F6", "#D1F4F6", "E5F4F5", "00CCF9"]}
+      colors={["#C7F4F6", "#D1F4F6", "#E5F4F5", "00CCF9"]}
       locations={[0, 0.3, 0.85, 1]}
       style={styles.container}
     >
@@ -189,7 +189,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    backgroundColor: "#00CCF9",
+    // backgroundColor: "#00CCF9",
     // width: 360,
     // height: 640,
   },

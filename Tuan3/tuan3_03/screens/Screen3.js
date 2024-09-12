@@ -3,7 +3,7 @@ import { LinearGradient } from "expo-linear-gradient";
 
 export default function Screen3({navigation}) {
   return (
-    <LinearGradient style={styles.container} colors={["#CDF3F6", "#0ACDF8"]}>
+    <LinearGradient style={styles.container} colors={["#C7F4F6", "#D1F4F6", "#E5F4F5", "00CCF9"]}>
       <View
         style={{
           justifyContent: "center",
