@@ -59,10 +59,11 @@ export default function Screen2({ navigation }) {
             <Text style={{
               top: 26,
               fontFamily: "Roboto",
-              fontWeight: "500",
+              fontWeight: 700,
               fontSize: 12,
               lineHeight: 14.06,
-              // fontStyle
+              textDecorationLine: 'line-through',
+              color: '#808080'
             }}>141.800 đ</Text>
             <View
               style={{
@@ -73,14 +74,26 @@ export default function Screen2({ navigation }) {
               <View
                 style={{
                   flexDirection: "row",
+                  
                 }}
               >
-                <TouchableOpacity>
-                  <Text>-</Text>
+                <TouchableOpacity
+                >
+                  <Image source={require('../assets/btnminus.png')} />
+                  
                 </TouchableOpacity>
-                <Text>1</Text>
+                <Text
+                style={{
+                  fontFamily: "Roboto",
+                  fontWeight: 700,
+                  fontSize: 15,
+                  lineHeight: 17.58,
+                  color: '#000000',
+                  width: 18,
+                  textAlign: 'center'
+                }}>1</Text>
                 <TouchableOpacity>
-                  <Text>+</Text>
+                  <Image source={require('../assets/btnadd.png')} />
                 </TouchableOpacity>
               </View>
 
