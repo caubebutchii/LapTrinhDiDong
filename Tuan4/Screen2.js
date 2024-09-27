@@ -1,5 +1,5 @@
   import React, { useState } from "react";
-  import { View, StyleSheet, Text, Image, TouchableOpacity } from "react-native";
+  import { View, StyleSheet, Text, Image, TouchableOpacity, ScrollView } from "react-native";
 
   export default function Screen2({ navigation }) {
     const [quantity, setQuantity] = useState(1);
@@ -17,7 +17,7 @@
     };
 
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <View
           style={{
             width: 360,
@@ -32,7 +32,7 @@
             }}
           >
             <Image
-              source={require("../assets/book.png")}
+              source={require("./assets/book.png")}
               style={{
                 width: 104,
                 height: 127,
@@ -106,7 +106,7 @@
                   }}
                 >
                   <TouchableOpacity onPress={handleDecrease}>
-                    <Image source={require("../assets/btnminus.png")} />
+                    <Image source={require("./assets/btnminus.png")} />
                   </TouchableOpacity>
                   <Text
                     style={{
@@ -122,7 +122,7 @@
                     {quantity}
                   </Text>
                   <TouchableOpacity onPress={handleIncrease}>
-                    <Image source={require("../assets/btnadd.png")} />
+                    <Image source={require("./assets/btnadd.png")} />
                   </TouchableOpacity>
                 </View>
 
@@ -197,7 +197,7 @@
                 }}
               >
                 <Image
-                  source={require("../assets/yellow_block.png")}
+                  source={require("./assets/yellow_block.png")}
                   style={{
                     marginRight: 11,
                     marginLeft: 11,
@@ -381,7 +381,7 @@
             </TouchableOpacity>
           </View>
         </View>
-      </View>
+      </ScrollView>
     );
   }
 
