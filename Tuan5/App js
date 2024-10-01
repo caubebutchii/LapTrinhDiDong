@@ -4,14 +4,26 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {useState, useEffect} from 'react'
 
 function HomeScreen({route, navigation}) {
-  const [link, setLink] = useState(require("./assets/vs_red.png"))
-  
-  useEffect(() => {
-    if (route.params?.img) {
-     setLink(route.params.img)
-    }
-    
-  }, [route.params?.img]);
+   const imageMap = {
+        đỏ: require('./assets/vs_red.png'),
+        xanh: require('./assets/vs_blue.png'),
+        bạc: require('./assets/vs_silver.png'),
+        đen: require('./assets/vs_black.png'),
+    };
+
+    const initialLink = route.params?.img || imageMap['đỏ']; 
+    const [link, setLink] = useState(initialLink);
+
+    const handleNavigate = (color) => {
+        setLink(imageMap[color]);
+        navigation.navigate('Details', {
+            name: "Điện Thoại Vsmart Joy 3 Hàng chính hãng",
+            supp: "Cung cấp bởi Tiki Tradding",
+            price: "1.790.000 đ",
+            color: color,
+            img: imageMap[color],
+        });
+    };
   return (
     <ScrollView style={styles.container}>
       <View style={{
