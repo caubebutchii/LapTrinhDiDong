@@ -11,7 +11,7 @@ import {
     TextInput,
 } from 'react-native';
 
-const Item = ({ item, onSelect, onUpdate }) => (
+const Item = ({ item, onSelect, onUpdate, onDelete }) => (
     <TouchableOpacity
         style={{
             width: '100%',
@@ -67,7 +67,24 @@ const Item = ({ item, onSelect, onUpdate }) => (
                     </TouchableOpacity>
                 </View>
             </View>
-            <View style={{}}>
+            <View style={{ flexDirection: 'row' }}>
+                <TouchableOpacity
+                    style={{
+                        backgroundColor: '#F31111',
+                        width: 80,
+                        height: 34,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        marginRight: 10,
+                    }}
+                    onPress={() => onUpdate(item.id)}>
+                    <Text
+                        style={{
+                            color: '#fff',
+                        }}>
+                        Update
+                    </Text>
+                </TouchableOpacity>
                 <TouchableOpacity
                     style={{
                         backgroundColor: '#F31111',
@@ -76,12 +93,12 @@ const Item = ({ item, onSelect, onUpdate }) => (
                         justifyContent: 'center',
                         alignItems: 'center',
                     }}
-                    onPress={() => onUpdate(item.id)}>
+                    onPress={() => onDelete(item.id)}>
                     <Text
                         style={{
                             color: '#fff',
                         }}>
-                        Update
+                        Delete
                     </Text>
                 </TouchableOpacity>
             </View>
@@ -152,6 +169,15 @@ export default function App() {
                 setData((prevData) =>
                     prevData.map((item) => (item.id === id ? updatedItem : item))
                 );
+            });
+    };
+
+    const deleteItem = (id) => {
+        fetch(`https://66fd0107c3a184a84d18b0b1.mockapi.io/products2/${id}`, {
+            method: 'DELETE',
+        })
+            .then(() => {
+                setData((prevData) => prevData.filter((item) => item.id !== id));
             });
     };
 
@@ -242,7 +268,7 @@ export default function App() {
                 <FlatList
                     data={data}
                     renderItem={({ item }) => (
-                        <Item item={item} onSelect={handleItemPress} onUpdate={updateItem} />
+                        <Item item={item} onSelect={handleItemPress} onUpdate={updateItem} onDelete={deleteItem} />
                     )}
                     keyExtractor={(item) => item.id.toString()}
                 />
