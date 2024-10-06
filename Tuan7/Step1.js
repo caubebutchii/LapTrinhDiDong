@@ -217,16 +217,13 @@ export default function App() {
     }
   }
 
-  const delItem = () => {
-   
-      fetch('https://66fd0107c3a184a84d18b0b1.mockapi.io/products2/7', {
-            method: 'DELETE',
-            
-          })
-          
-          
-    
-  }
+  const delItem = (id) => {
+    fetch(`https://66fd0107c3a184a84d18b0b1.mockapi.io/products2/${id}`, {
+      method: 'DELETE',
+    })
+    .then(response => response.json())
+    .then(data => console.log(data));
+  };
   return (
     <SafeAreaView style={styles.container}>
       <View style={{
@@ -281,7 +278,7 @@ export default function App() {
             height: 34,
             justifyContent: 'center',
             alignItems: 'center',
-          }} onPress={delItem}>
+          }} onPress={delItem(1)}>
           <Text
             style={{
               color: '#fff',
