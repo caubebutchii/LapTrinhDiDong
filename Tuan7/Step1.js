@@ -10,11 +10,6 @@ import {
   ScrollView,
 } from 'react-native';
 
-// You can import supported modules from npm
-import { Card } from 'react-native-paper';
-
-// or any files within the Snack
-import AssetExample from './components/AssetExample';
 
 const data =[
   {
@@ -206,27 +201,20 @@ export default function App() {
   }
 
   const updateItem = () => {
-   
-      fetch('https://66fd0107c3a184a84d18b0b1.mockapi.io/products2/7', {
-            method: 'PUT',
-            headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(
-              {
-                "name": "qA!vBjasds1",
-              "price": 1111,
-              "image": "_x>\\2^GdNj",
-              
-              }
-            )
-            
-          })
-          .then(response => response.json())
-          .then(data => console.log(data))
-          
-    
+    const itemToUpdate = data.find(item => item.id === "1");
+    if (itemToUpdate) {
+      itemToUpdate.price = 1;
+      fetch('https://66fd0107c3a184a84d18b0b1.mockapi.io/products2/1', {
+        method: 'PUT',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(itemToUpdate)
+      })
+      .then(response => response.json())
+      .then(data => console.log(data));
+    }
   }
 
   const delItem = () => {
