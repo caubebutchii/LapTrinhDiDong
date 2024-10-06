@@ -11,11 +11,12 @@ import {
     TextInput,
 } from 'react-native';
 
-const Item = ({ item }) => (
+const Item = ({ item, onSelect, onUpdate }) => (
     <TouchableOpacity
         style={{
             width: '100%',
-        }}>
+        }}
+        onPress={() => onSelect(item)}>
         <View
             style={{
                 height: 80,
@@ -74,12 +75,13 @@ const Item = ({ item }) => (
                         height: 34,
                         justifyContent: 'center',
                         alignItems: 'center',
-                    }}>
+                    }}
+                    onPress={() => onUpdate(item.id)}>
                     <Text
                         style={{
                             color: '#fff',
                         }}>
-                        Add
+                        Update
                     </Text>
                 </TouchableOpacity>
             </View>
@@ -99,6 +101,7 @@ export default function App() {
     const [price, setPrice] = useState(0);
     const [img, setImage] = useState('');
     const [data, setData] = useState([]);
+    const [selectedItemId, setSelectedItemId] = useState(null);
 
     const fetchData = () => {
         fetch('https://66fd0107c3a184a84d18b0b1.mockapi.io/products2')
@@ -131,6 +134,34 @@ export default function App() {
             });
     };
 
+    const updateItem = (id) => {
+        fetch(`https://66fd0107c3a184a84d18b0b1.mockapi.io/products2/${id}`, {
+            method: 'PUT',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                name: name,
+                price: price,
+                image: img,
+            }),
+        })
+            .then((response) => response.json())
+            .then((updatedItem) => {
+                setData((prevData) =>
+                    prevData.map((item) => (item.id === id ? updatedItem : item))
+                );
+            });
+    };
+
+    const handleItemPress = (item) => {
+        setName(item.name);
+        setPrice(item.price);
+        setImage(item.image);
+        setSelectedItemId(item.id);
+    };
+
     return (
         <SafeAreaView style={styles.container}>
             <View
@@ -151,49 +182,6 @@ export default function App() {
                             color: '#fff',
                         }}>
                         Add
-                    </Text>
-                </TouchableOpacity>
-            </View>
-            <View
-                style={{
-                    margin: 10,
-                }}>
-                <TouchableOpacity
-                    style={{
-                        backgroundColor: '#F31111',
-                        width: 100,
-                        height: 34,
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                    }}
-                    >
-                    <Text
-                        style={{
-                            color: '#fff',
-                        }}>
-                        Update
-                    </Text>
-                </TouchableOpacity>
-            </View>
-
-            <View
-                style={{
-                    margin: 10,
-                }}>
-                <TouchableOpacity
-                    style={{
-                        backgroundColor: '#F31111',
-                        width: 100,
-                        height: 34,
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                    }}
-                    >
-                    <Text
-                        style={{
-                            color: '#fff',
-                        }}>
-                        Delete
                     </Text>
                 </TouchableOpacity>
             </View>
@@ -227,8 +215,8 @@ export default function App() {
                         textAlign: 'right',
                     }}
                     keyboardType="numeric"
-                    value={price}
-                    onChangeText={(text) => setPrice(text)}
+                    value={price.toString()}
+                    onChangeText={(text) => setPrice(Number(text))}
                 />
 
                 <TextInput
@@ -253,7 +241,9 @@ export default function App() {
                 }}>
                 <FlatList
                     data={data}
-                    renderItem={({ item }) => <Item item={item} />}
+                    renderItem={({ item }) => (
+                        <Item item={item} onSelect={handleItemPress} onUpdate={updateItem} />
+                    )}
                     keyExtractor={(item) => item.id.toString()}
                 />
             </ScrollView>
