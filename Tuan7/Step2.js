@@ -288,15 +288,55 @@ function Details({ route, navigation }) {
 
 function Add({ route, navigation }) {
   return (
-    <View>
-      <View>
-        <View>
+    <View style={{
+        padding: 18,
+      }}>
+         <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}>
+        
+
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}>
           <View>
             <Image source={require('./assets/Frame11.png')} />
           </View>
-          <View>
-            <Text>Hi {route.params.name}</Text>
-            <Text>Have agrate day a head</Text>
+          <View
+            style={{
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginLeft: 2,
+            }}>
+            <Text
+              style={{
+                fontWeight: 700,
+                fontSize: 20,
+                color: '#171A1F',
+                lineHeight: 30,
+                textAlign: 'center',
+                fontStyle: 'Epilogue',
+                width: 110,
+              }}>
+              Hi {route.params.name ? route.params.name : ' '}
+            </Text>
+            <Text
+              style={{
+                fontWeight: 700,
+                fontSize: 14,
+                color: '#77767b',
+                lineHeight: 22,
+                textAlign: 'center',
+                fontStyle: 'Epilogue',
+              }}>
+              Have a great day a head
+            </Text>
           </View>
         </View>
         <View>
