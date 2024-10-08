@@ -25,7 +25,7 @@ const Item = ({ item }) => (
   </View>
 );
 function HomeScreen({ navigation }) {
-  const [uname, setName] = useState('Enter your name');
+  const [uname, setName] = useState('Twinkle');
   return (
     <View
       style={{
@@ -47,6 +47,7 @@ function HomeScreen({ navigation }) {
           fontWeight: 'bold',
           textAlign: 'center',
           marginTop: 20,
+          fontStyle: 'Epilogue',
         }}>
         MANAGE YOUR TASK
       </Text>
@@ -71,9 +72,10 @@ function HomeScreen({ navigation }) {
             marginLeft: 10,
             borderWidth: 0,
             alignContent: 'center',
+            fontStyle: 'Epilogue',
           }}
-          onFocus={(e) => e.target.style.borderWidth = 0}
-          onBlur={(e) => e.target.style.borderWidth = 0}
+          onFocus={(e) => (e.target.style.borderWidth = 0)}
+          onBlur={(e) => (e.target.style.borderWidth = 0)}
         />
       </View>
 
@@ -103,6 +105,7 @@ function HomeScreen({ navigation }) {
               lineHeight: 26,
               fontWeight: 'bold',
               color: '#FFFFFF',
+              fontStyle: 'Epilogue',
             }}>
             GET STARTED ->
           </Text>
@@ -113,29 +116,92 @@ function HomeScreen({ navigation }) {
 }
 
 function Details({ route, navigation }) {
+  const [search, setSearch] = useState('Search');
   return (
-    <View>
-      <View>
+    <View
+      style={{
+        padding: 18,
+      }}>
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}>
         <View>
           <TouchableOpacity>
             <Image source={require('./assets/IconButton11.png')} />
           </TouchableOpacity>
         </View>
 
-        <View>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}>
           <View>
             <Image source={require('./assets/Frame11.png')} />
           </View>
-          <View>
-            <Text>Hi {route.params.name}</Text>
-            <Text>Have agrate day a head</Text>
+          <View
+            style={{
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginLeft: 2,
+            }}>
+            <Text
+              style={{
+                fontWeight: 700,
+                fontSize: 20,
+                color: '#171A1F',
+                lineHeight: 30,
+                textAlign: 'center',
+                fontStyle: 'Epilogue',
+                width: 110,
+              }}>
+              Hi {route.params.name ? route.params.name : ' '}
+            </Text>
+            <Text
+              style={{
+                fontWeight: 700,
+                fontSize: 14,
+                color: '#77767b',
+                lineHeight: 22,
+                textAlign: 'center',
+                fontStyle: 'Epilogue',
+              }}>
+              Have a great day a head
+            </Text>
           </View>
         </View>
       </View>
 
-      <View>
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'flex-start',
+          alignItems: 'center',
+          marginTop: 60,
+          padding: 16,
+          borderColor: '#9095A0',
+          borderRadius: 5,
+          borderWidth: 1,
+          height: 44,
+        }}>
         <Image source={require('./assets/Frame(2).png')} />
-        <Text>Search</Text>
+        <TextInput
+          onChangeText={(text) => setSearch(text)}
+          value={search}
+          style={{
+            color: '#BCC1CA',
+            marginLeft: 10,
+            borderWidth: 0,
+            alignContent: 'center',
+            fontStyle: 'Epilogue',
+          }}
+          onFocus={(e) => (e.target.style.borderWidth = 0)}
+          onBlur={(e) => (e.target.style.borderWidth = 0)}
+        />
       </View>
 
       <ScrollView>
@@ -146,14 +212,37 @@ function Details({ route, navigation }) {
         />
       </ScrollView>
 
-      <View>
+      <View
+        style={{
+          justifyContent: 'center',
+          alignItems: 'center',
+          marginTop: 30
+        }}>
         <TouchableOpacity
+          style={{
+            width: 69,
+            height: 69,
+            backgroundColor: '#00BDD6',
+            justifyContent: 'center',
+            alignItems: 'center',
+            borderRadius: '50%',
+            padding: 0
+          }}
           onPress={() =>
             navigation.navigate('Add', {
               name: route.params.name,
             })
           }>
-          <Text>+</Text>
+          <Text
+            style={{
+              lineHeight: 69,
+              color: '#fff',
+              fontSize: 40,
+              fontWeight: 300,
+              padding:0
+            }}>
+            +
+          </Text>
         </TouchableOpacity>
       </View>
     </View>
