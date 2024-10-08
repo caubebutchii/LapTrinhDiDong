@@ -25,7 +25,7 @@ const Item = ({ item }) => (
   </View>
 );
 function HomeScreen({ navigation }) {
-  const [uname, setName] = useState('');
+  const [uname, setName] = useState('Enter your name');
   return (
     <View
       style={{
@@ -63,13 +63,16 @@ function HomeScreen({ navigation }) {
           height: 43,
         }}>
         <Image source={require('./assets/Frame.png')} />
-        <Text
+        <TextInput
+          onChangeText={(text) => setName(text)}
+          value={uname}
           style={{
             color: '#BCC1CA',
             marginLeft: 10,
-          }}>
-          Enter your name
-        </Text>
+            borderWidth: 0,
+            alignContent: 'center',
+          }}
+        />
       </View>
 
       <View
@@ -83,21 +86,24 @@ function HomeScreen({ navigation }) {
             height: 44,
             width: 190,
             justifyContent: 'center',
-          alignItems: 'center',
-          borderRadius: 12,
-          marginTop: 100
+            alignItems: 'center',
+            borderRadius: 12,
+            marginTop: 100,
           }}
           onPress={() =>
             navigation.navigate('Details', {
               name: uname,
             })
           }>
-          <Text style={{
-            fontSize: 16,
-            lineHeight: 26,
-            fontWeight: "bolb",
-            color: "#FFFFFF"
-          }}>GET STARTED -></Text>
+          <Text
+            style={{
+              fontSize: 16,
+              lineHeight: 26,
+              fontWeight: 'bold',
+              color: '#FFFFFF',
+            }}>
+            GET STARTED ->
+          </Text>
         </TouchableOpacity>
       </View>
     </View>
