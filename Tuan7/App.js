@@ -72,6 +72,8 @@ function HomeScreen({ navigation }) {
             borderWidth: 0,
             alignContent: 'center',
           }}
+          onFocus={(e) => e.target.style.borderWidth = 0}
+          onBlur={(e) => e.target.style.borderWidth = 0}
         />
       </View>
 
