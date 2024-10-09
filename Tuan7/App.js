@@ -56,7 +56,10 @@ const Item = ({ item, onUpdate }) => {
         </Text>
       </View>
       <View>
-        <TouchableOpacity onPress={() => {onUpdate(item)}}>
+        <TouchableOpacity
+          onPress={() => {
+            onUpdate(item);
+          }}>
           <Image source={require('./assets/Frame(3).png')} style={{}} />
         </TouchableOpacity>
       </View>
@@ -113,8 +116,6 @@ function HomeScreen({ navigation }) {
             alignContent: 'center',
             fontStyle: 'Epilogue',
           }}
-          onFocus={(e) => (e.target.style.borderWidth = 0)}
-          onBlur={(e) => (e.target.style.borderWidth = 0)}
         />
       </View>
 
@@ -158,10 +159,13 @@ function Details({ route, navigation }) {
   const [search, setSearch] = useState('Search');
   const [todoList, setTodos] = useState([]);
 
-  useEffect(() => {
+  const fetchTodos = () => {
     fetch('https://670501dc031fd46a830e46b6.mockapi.io/todo')
       .then((res) => res.json())
       .then((data) => setTodos(data));
+  };
+  useEffect(() => {
+    fetchTodos();
   }, []);
 
   const updateItem = (item) => {
@@ -179,7 +183,7 @@ function Details({ route, navigation }) {
       .then((res) => res.json())
       .then((updatedItem) => {
         setTodos((prevData) => {
-          return prevData.map((i) => (i.id === item.id ? updatedItem : i))
+          return prevData.map((i) => (i.id === item.id ? updatedItem : i));
         });
       });
   };
@@ -265,8 +269,6 @@ function Details({ route, navigation }) {
             alignContent: 'center',
             fontStyle: 'Epilogue',
           }}
-          onFocus={(e) => (e.target.style.borderWidth = 0)}
-          onBlur={(e) => (e.target.style.borderWidth = 0)}
         />
       </View>
 
@@ -297,6 +299,7 @@ function Details({ route, navigation }) {
           onPress={() =>
             navigation.navigate('Add', {
               name: route.params.name,
+              onGoBack: fetchTodos,
             })
           }>
           <Text
@@ -336,6 +339,10 @@ function Add({ route, navigation }) {
       .then((res) => res.json())
       .then(() => {
         setNewTodo('input your job');
+        if (route.params.onGoBack) {
+          route.params.onGoBack();
+        }
+        navigation.goBack();
       })
       .catch((error) => {
         console.error('Error:', error);
@@ -440,8 +447,6 @@ function Add({ route, navigation }) {
             alignContent: 'center',
             fontStyle: 'Epilogue',
           }}
-          onFocus={(e) => (e.target.style.borderWidth = 0)}
-          onBlur={(e) => (e.target.style.borderWidth = 0)}
         />
       </View>
 
