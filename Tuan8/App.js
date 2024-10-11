@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import CheckBox from 'react-native-check-box';
 import {
   Text,
-  SafeAreaView,
   StyleSheet,
   View,
   TouchableOpacity,
@@ -22,7 +20,7 @@ const Item = ({ item }) => {
         height: 115,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'center',
+        marginTop: 12,
       }}>
       <Image />
 
@@ -35,7 +33,9 @@ const Item = ({ item }) => {
             fontWeight: 700,
             fontSize: 20,
             lineHeight: 23.44,
-            height: 35,
+            flex: 1,
+            height: 30,
+            marginTop: 5,
           }}>
           {item.name}
         </Text>
@@ -43,26 +43,37 @@ const Item = ({ item }) => {
         <Text
           style={{
             fontWeight: 700,
-            fontSize: 17,
-            lineHeight: 17.58,
-            height: 35,
+            fontSize: 14,
+            lineHeight: 14.58,
+            flex: 1,
             color: '#0000008A',
             opacity: 54,
+            height: 20,
           }}>
           {item.desc}
         </Text>
 
-        <View>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            flex: 1,
+            alignItems: 'flex-end',
+            height: 35,
+          }}>
           <Text
             style={{
               fontWeight: 700,
               fontSize: 20,
               lineHeight: 23.44,
-              height: 35,
+              marginBottom: 10,
             }}>
-            ${item.price}
+            ${item.price}.00
           </Text>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navige();
+            }}>
             <Image source={require('./assets/plus_button.png')} />
           </TouchableOpacity>
         </View>
@@ -72,7 +83,21 @@ const Item = ({ item }) => {
 };
 
 function HomeScreen({ route, navigation }) {
-  const data = [];
+  const [data, setData] = useState([]);
+  const [isChoosed, setChoosed] = useState(1);
+  const handlePressBtn = (btn) => {
+    setChoosed(btn)
+  }
+  const fetchData = () => {
+    fetch('https://670879498e86a8d9e42f0301.mockapi.io/donuts')
+      .then((res) => res.json())
+      .then((data) => {
+        setData(data);
+      });
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
   return (
     <View style={styles.container}>
       <View
@@ -100,102 +125,98 @@ function HomeScreen({ route, navigation }) {
         </Text>
       </View>
 
-      <View style={{
-        flexDirection: 'row',
-        justifyContent: "space-between",
-        marginTop: 30,
-      }}>
-        <View style={{
-          flex: 1
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          marginTop: 30,
         }}>
+        <View
+          style={{
+            flex: 1,
+          }}>
           <TextInput
             value={'Search food'}
             style={{
               borderWidth: 1,
               borderRadius: 3,
-              borderColor: "#000",
+              borderColor: '#000',
               height: 40,
-              backgroundColor: "#C4C4C4",
-              opacity: "10%",
-              
-              paddingLeft: 10
+              backgroundColor: '#C4C4C4',
+              opacity: '10%',
+
+              paddingLeft: 10,
             }}
           />
         </View>
-        <TouchableOpacity style={{
-          backgroundColor: "#F1B000",
-          width: 40,
-          height: 40,
-          borderRadius: 5,
-          justifyContent: "center",
-          alignItems: "center",
-          marginLeft: 14,
-          marginRight: 0
-        }}>
+        <TouchableOpacity
+          style={{
+            backgroundColor: '#F1B000',
+            width: 40,
+            height: 40,
+            borderRadius: 5,
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginLeft: 14,
+            marginRight: 0,
+          }}>
           <Image source={require('./assets/Vector.png')} />
         </TouchableOpacity>
       </View>
 
-      <View style={{
-        flexDirection: "row",
-        marginTop: 24
-      }}>
+      <View
+        style={{
+          flexDirection: 'row',
+          marginTop: 24,
+        }}>
         <View>
           <TouchableOpacity
-          style={{
-            height: 35,
-            borderRadius: 5,
-            borderWidth: 0,
-            justifyContent: 'center',
-            alignItems: "center",
-            backgroundColor :"#F1B000",
-            width: 101,
-          }}>
-            <Text style={{
-              color:"#0C0606",
-              fontWeight: 700,
-              fontSize: 14
-            }}>Donut</Text>
+            style={
+             isChoosed===1 ? styles.btnPress : styles.btn
+            }
+            onPress={()=> handlePressBtn(1)}>
+            <Text
+              style={{
+                color: '#0C0606',
+                fontWeight: 700,
+                fontSize: 14,
+              }}>
+              Donut
+            </Text>
           </TouchableOpacity>
         </View>
 
         <View>
           <TouchableOpacity
-          style={{
-            height: 35,
-            borderRadius: 5,
-            borderWidth: 0,
-            justifyContent: 'center',
-            alignItems: "center",
-            backgroundColor :"#F1B000",
-            width: 101,
-            marginLeft: 4
-          }}>
-            <Text style={{
-              color:"#0C0606",
-              fontWeight: 700,
-              fontSize: 14
-            }}>Donut</Text>
+            style={
+             isChoosed===2 ? styles.btnPress : styles.btn
+            }
+            onPress={()=> handlePressBtn(2)}>
+            <Text
+              style={{
+                color: '#0C0606',
+                fontWeight: 700,
+                fontSize: 14,
+              }}>
+              Donut
+            </Text>
           </TouchableOpacity>
         </View>
 
         <View>
           <TouchableOpacity
-          style={{
-            height: 35,
-            borderRadius: 5,
-            borderWidth: 0,
-            justifyContent: 'center',
-            alignItems: "center",
-            backgroundColor :"#F1B000",
-            width: 101,
-            marginLeft: 4
-          }}>
-            <Text style={{
-              color:"#0C0606",
-              fontWeight: 700,
-              fontSize: 14
-            }}>Donut</Text>
+            style={
+             isChoosed===3 ? styles.btnPress : styles.btn
+            }
+            onPress={()=> handlePressBtn(3)}>
+            <Text
+              style={{
+                color: '#0C0606',
+                fontWeight: 700,
+                fontSize: 14,
+              }}>
+              Donut
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -203,8 +224,8 @@ function HomeScreen({ route, navigation }) {
       <ScrollView>
         <FlatList
           data={data}
-          renderItem={(item) => {}}
-          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => <Item item={item} />}
+          keyExtractor={(item) => item.id.toString()}
         />
       </ScrollView>
     </View>
@@ -218,8 +239,11 @@ export default function App() {
     <View style={styles.container}>
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name="Home" component={HomeScreen} 
-          options={{headerShown: false}}/>
+          <Stack.Screen
+            name="Home"
+            component={HomeScreen}
+            options={{ headerShown: false }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </View>
@@ -238,5 +262,25 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'center',
+  },
+  btnPress: {
+    height: 35,
+    borderRadius: 5,
+    borderWidth: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F1B000',
+    width: 101,
+    marginLeft: 4,
+  },
+  btn: {
+    height: 35,
+    borderRadius: 5,
+    borderWidth: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'none',
+    width: 101,
+    marginLeft: 4,
   },
 });
