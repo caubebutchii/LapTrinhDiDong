@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext, createContext } from 'react';
 import {
   Text,
   StyleSheet,
@@ -11,83 +11,32 @@ import {
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-const Item = ({ item }) => {
+
+const ImageContext = createContext();
+const Stack = createNativeStackNavigator();
+
+const Detail = ({ route }) => {
+  const { item } = route.params;
+  const imageMap = useContext(ImageContext);
   return (
-    <View
-      style={{
-        backgroundColor: '#F4DDDD',
-        borderRadius: 10,
-        height: 115,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginTop: 12,
-      }}>
-      <Image />
-
-      <View
-        style={{
-          justifyContent: 'space-between',
-        }}>
-        <Text
-          style={{
-            fontWeight: 700,
-            fontSize: 20,
-            lineHeight: 23.44,
-            flex: 1,
-            height: 30,
-            marginTop: 5,
-          }}>
-          {item.name}
-        </Text>
-
-        <Text
-          style={{
-            fontWeight: 700,
-            fontSize: 14,
-            lineHeight: 14.58,
-            flex: 1,
-            color: '#0000008A',
-            opacity: 54,
-            height: 20,
-          }}>
-          {item.desc}
-        </Text>
-
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            flex: 1,
-            alignItems: 'flex-end',
-            height: 35,
-          }}>
-          <Text
-            style={{
-              fontWeight: 700,
-              fontSize: 20,
-              lineHeight: 23.44,
-              marginBottom: 10,
-            }}>
-            ${item.price}.00
-          </Text>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navige();
-            }}>
-            <Image source={require('./assets/plus_button.png')} />
-          </TouchableOpacity>
-        </View>
-      </View>
+    <View style={styles.container}>
+      <Image
+        source={imageMap[item.image]}
+        style={{ width: 200, height: 200 }}
+      />
+      <Text style={styles.paragraph}>Name: {item.name}</Text>
+      <Text style={styles.paragraph}>Description: {item.desc}</Text>
+      <Text style={styles.paragraph}>Price: ${item.price}.00</Text>
     </View>
   );
 };
 
-function HomeScreen({ route, navigation }) {
+const HomeScreen = ({ navigation }) => {
   const [data, setData] = useState([]);
   const [isChoosed, setChoosed] = useState(1);
   const handlePressBtn = (btn) => {
-    setChoosed(btn)
-  }
+    setChoosed(btn);
+  };
   const fetchData = () => {
     fetch('https://670879498e86a8d9e42f0301.mockapi.io/donuts')
       .then((res) => res.json())
@@ -106,19 +55,19 @@ function HomeScreen({ route, navigation }) {
         }}>
         <Text
           style={{
-            fontWeight: 700,
+            fontWeight: '700',
             fontSize: 16,
             lineHeight: 18.75,
-            opacity: 65,
+            opacity: 0.65,
           }}>
           Welcome, Jala!
         </Text>
         <Text
           style={{
-            fontWeight: 700,
+            fontWeight: '700',
             fontSize: 20,
             lineHeight: 23.44,
-            opacity: 65,
+            opacity: 0.65,
             top: 6,
           }}>
           Choice you Best food
@@ -143,8 +92,7 @@ function HomeScreen({ route, navigation }) {
               borderColor: '#000',
               height: 40,
               backgroundColor: '#C4C4C4',
-              opacity: '10%',
-
+              opacity: 0.1,
               paddingLeft: 10,
             }}
           />
@@ -171,14 +119,12 @@ function HomeScreen({ route, navigation }) {
         }}>
         <View>
           <TouchableOpacity
-            style={
-             isChoosed===1 ? styles.btnPress : styles.btn
-            }
-            onPress={()=> handlePressBtn(1)}>
+            style={isChoosed === 1 ? styles.btnPress : styles.btn}
+            onPress={() => handlePressBtn(1)}>
             <Text
               style={{
                 color: '#0C0606',
-                fontWeight: 700,
+                fontWeight: '700',
                 fontSize: 14,
               }}>
               Donut
@@ -188,14 +134,12 @@ function HomeScreen({ route, navigation }) {
 
         <View>
           <TouchableOpacity
-            style={
-             isChoosed===2 ? styles.btnPress : styles.btn
-            }
-            onPress={()=> handlePressBtn(2)}>
+            style={isChoosed === 2 ? styles.btnPress : styles.btn}
+            onPress={() => handlePressBtn(2)}>
             <Text
               style={{
                 color: '#0C0606',
-                fontWeight: 700,
+                fontWeight: '700',
                 fontSize: 14,
               }}>
               Donut
@@ -205,14 +149,12 @@ function HomeScreen({ route, navigation }) {
 
         <View>
           <TouchableOpacity
-            style={
-             isChoosed===3 ? styles.btnPress : styles.btn
-            }
-            onPress={()=> handlePressBtn(3)}>
+            style={isChoosed === 3 ? styles.btnPress : styles.btn}
+            onPress={() => handlePressBtn(3)}>
             <Text
               style={{
                 color: '#0C0606',
-                fontWeight: 700,
+                fontWeight: '700',
                 fontSize: 14,
               }}>
               Donut
@@ -221,32 +163,123 @@ function HomeScreen({ route, navigation }) {
         </View>
       </View>
 
-      <ScrollView>
+      <ScrollView
+        style={{
+          marginTop: 8,
+        }}>
         <FlatList
           data={data}
-          renderItem={({ item }) => <Item item={item} />}
+          renderItem={({ item }) => (
+            <Item item={item} navigation={navigation} />
+          )}
           keyExtractor={(item) => item.id.toString()}
         />
       </ScrollView>
     </View>
   );
-}
+};
 
-const Stack = createNativeStackNavigator();
+const Item = ({ item, navigation }) => {
+  const imageMap = useContext(ImageContext);
+  return (
+    <View
+      style={{
+        backgroundColor: '#F4DDDD',
+        borderRadius: 10,
+        height: 115,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop: 12,
+      }}>
+      <Image
+        source={imageMap[item.image]}
+        style={{
+          margin: 6,
+        }}
+      />
+
+      <View
+        style={{
+          justifyContent: 'space-between',
+        }}>
+        <Text
+          style={{
+            fontWeight: '700',
+            fontSize: 20,
+            lineHeight: 23.44,
+            flex: 1,
+            height: 30,
+            marginTop: 5,
+          }}>
+          {item.name}
+        </Text>
+
+        <Text
+          style={{
+            fontWeight: '700',
+            fontSize: 14,
+            lineHeight: 14.58,
+            flex: 1,
+            color: '#0000008A',
+            opacity: 0.54,
+            height: 20,
+          }}>
+          {item.desc}
+        </Text>
+
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            flex: 1,
+            alignItems: 'flex-end',
+            height: 35,
+          }}>
+          <Text
+            style={{
+              fontWeight: '700',
+              fontSize: 20,
+              lineHeight: 23.44,
+              marginBottom: 10,
+            }}>
+            ${item.price}.00
+          </Text>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('Detail', { item });
+            }}>
+            <Image source={require('./assets/plus_button.png')} />
+          </TouchableOpacity>
+        </View>
+      </View>
+    </View>
+  );
+};
 
 export default function App() {
+  const imageMap = {
+    'donut_red.png': require('./assets/donut_red.png'),
+    'donut_yellow.png': require('./assets/donut_yellow.png'),
+    'green_donut.png': require('./assets/green_donut.png'),
+    'tasty_donut.png': require('./assets/tasty_donut.png'),
+  };
   return (
-    <View style={styles.container}>
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen
-            name="Home"
-            component={HomeScreen}
-            options={{ headerShown: false }}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </View>
+    <ImageContext.Provider value={imageMap}>
+      <View style={styles.container}>
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen
+              name="Home"
+              component={HomeScreen}
+              options={{
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen name="Detail" component={Detail} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </View>
+    </ImageContext.Provider>
   );
 }
 
