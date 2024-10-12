@@ -19,14 +19,144 @@ const Detail = ({ route }) => {
   const { item } = route.params;
   const imageMap = useContext(ImageContext);
   return (
-    <View style={styles.container}>
-      <Image
-        source={imageMap[item.image]}
-        style={{ width: 200, height: 200 }}
-      />
-      <Text style={styles.paragraph}>Name: {item.name}</Text>
-      <Text style={styles.paragraph}>Description: {item.desc}</Text>
-      <Text style={styles.paragraph}>Price: ${item.price}.00</Text>
+    <View
+      style={
+        ({
+          alignItems: 'center',
+        },
+        styles.container)
+      }>
+      <View
+        style={{
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+        <Image
+          source={imageMap[item.image]}
+          style={{ width: 200, height: 200, marginTop: 15 }}
+        />
+      </View>
+      <View
+        style={{
+          marginTop: 15,
+        }}>
+        <Text
+          style={{
+            fontSize: 20,
+            lineHeight: 23.44,
+            fontWeight: 700,
+          }}>
+          {item.name}
+        </Text>
+      </View>
+      <View
+        style={{
+          marginTop: 15,
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}>
+        <Text
+          style={{
+            fontWeight: '700',
+            fontSize: 14,
+            lineHeight: 14.58,
+            flex: 1,
+            color: '#0000008A',
+            opacity: 0.54,
+            height: 20,
+          }}>
+          {item.desc}
+        </Text>
+        <Text
+          style={{
+            fontWeight: '700',
+            fontSize: 20,
+            lineHeight: 23.44,
+            marginBottom: 10,
+          }}>
+          ${item.price}.00
+        </Text>
+      </View>
+
+      <View style={{
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop: 16
+      }}>
+        <View>
+          <View style={{
+          flexDirection: 'row',
+          justifyContent: 'flex-start',
+          alignItems: 'center'
+        }}>
+          <Image source={require("./assets/clock.png")}/>
+        <Text style={{
+            fontWeight: '700',
+            fontSize: 14,
+            lineHeight: 14.58,
+            flex: 1,
+            color: '#0000008A',
+            opacity: 0.54,
+            height: 20,
+            marginLeft: 4
+          }}>Delivery in</Text>
+        </View>
+        <Text style={{
+            fontWeight: '700',
+            fontSize: 20,
+            lineHeight: 23.44,
+            marginBottom: 10,
+            textAlign: 'center',
+            alignSelf: 'center',
+            marginTop: 6
+          }}>30 min</Text>
+        </View>
+
+        <View style= {{
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'center'
+        }}>
+          <TouchableOpacity style={{
+            backgroundColor: "#F1B000",
+            width: 21,
+            height: 21,
+            justifyContent: 'center',
+            alignItems: 'center',
+            padding: 0
+          }}>
+            <Text style={{
+              color: "#fff",
+            fontWeight: '700',
+            fontSize: 20,
+            lineHeight: 20,}}>-</Text>
+          </TouchableOpacity>
+          <Text style={{
+            fontWeight: '700',
+            fontSize: 20,
+            lineHeight: 23.44,
+            textAlign: 'center',
+            alignSelf: 'center',
+            marginLeft: 4,
+            marginRight: 4
+          }}>1</Text>
+          <TouchableOpacity style={{
+            backgroundColor: "#F1B000",
+            width: 21,
+            height: 21,
+            justifyContent: 'center',
+            alignItems: 'center',
+            padding: 0
+          }}>
+            <Text style={{
+              color: "#fff",
+            fontWeight: '700',
+            fontSize: 20,
+            lineHeight: 20,}}>+</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
     </View>
   );
 };
