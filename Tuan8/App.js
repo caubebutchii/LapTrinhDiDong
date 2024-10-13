@@ -19,7 +19,7 @@ const Detail = ({ route }) => {
   const { item } = route.params;
   const imageMap = useContext(ImageContext);
   return (
-    <View
+    <ScrollView
       style={
         ({
           alignItems: 'center',
@@ -88,7 +88,8 @@ const Detail = ({ route }) => {
           <View style={{
           flexDirection: 'row',
           justifyContent: 'flex-start',
-          alignItems: 'center'
+          alignItems: 'center',
+          marginTop: 16
         }}>
           <Image source={require("./assets/clock.png")}/>
         <Text style={{
@@ -157,7 +158,52 @@ const Detail = ({ route }) => {
           </TouchableOpacity>
         </View>
       </View>
-    </View>
+
+      <View>
+        <Text style={{
+            fontSize: 20,
+            lineHeight: 23.44,
+            fontWeight: 700,
+          }}>Restaurants info</Text>
+        <Text  style={{
+            fontWeight: '700',
+            fontSize: 14,
+            lineHeight: 14.58,
+            flex: 1,
+            color: '#000',
+            opacity: "67%",
+            height: 20,
+            marginTop: 10
+          }}>
+          Order a Large Pizza but the size is the equivalent of a medium/small from other places at the same price range.
+        </Text>
+      </View>
+
+      <View style={{
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 36
+      }}>
+        <TouchableOpacity style={{
+          width: 316,
+          height: 58,
+          backgroundColor: "#F1B000",
+          borderRadius: 10,
+          borderWidth: 1,
+          borderColor: "#F1B000",
+          justifyContent: 'center',
+          alignItems: 'center',
+          marginBottom: 20
+        }}>
+          <Text style={{
+            fontSize: 25,
+            lineHeight: 29.3,
+            color: "#FFFDFD",
+            fontWeight: 500
+          }}>Add to cart</Text>
+        </TouchableOpacity>
+      </View>
+    </ScrollView>
   );
 };
 
