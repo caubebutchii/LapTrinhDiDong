@@ -125,13 +125,16 @@ const Detail = ({ route }) => {
             height: 21,
             justifyContent: 'center',
             alignItems: 'center',
-            padding: 0
+            padding: 0,
+            borderColor: "#F1B000",
+            borderRadius: 4,
+            borderWidth: 1
           }}>
             <Text style={{
               color: "#fff",
             fontWeight: '700',
             fontSize: 20,
-            lineHeight: 20,}}>-</Text>
+            lineHeight: 21,}}>-</Text>
           </TouchableOpacity>
           <Text style={{
             fontWeight: '700',
@@ -148,7 +151,10 @@ const Detail = ({ route }) => {
             height: 21,
             justifyContent: 'center',
             alignItems: 'center',
-            padding: 0
+            padding: 0,
+            borderColor: "#F1B000",
+            borderRadius: 4,
+            borderWidth: 1
           }}>
             <Text style={{
               color: "#fff",
