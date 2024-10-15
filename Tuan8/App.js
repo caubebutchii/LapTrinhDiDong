@@ -219,6 +219,11 @@ const HomeScreen = ({ navigation }) => {
   const handlePressBtn = (btn) => {
     setChoosed(btn);
   };
+
+  const filterDonut = (category) =>
+  {
+    
+  }
   const fetchData = () => {
     fetch('https://670879498e86a8d9e42f0301.mockapi.io/donuts')
       .then((res) => res.json())
@@ -324,7 +329,7 @@ const HomeScreen = ({ navigation }) => {
                 fontWeight: '700',
                 fontSize: 14,
               }}>
-              Donut
+              Pink Donut
             </Text>
           </TouchableOpacity>
         </View>
@@ -338,8 +343,11 @@ const HomeScreen = ({ navigation }) => {
                 color: '#0C0606',
                 fontWeight: '700',
                 fontSize: 14,
+              }}
+              onPress={()=>{
+
               }}>
-              Donut
+              Floating Donut
             </Text>
           </TouchableOpacity>
         </View>
