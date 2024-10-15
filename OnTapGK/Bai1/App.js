@@ -8,59 +8,185 @@ import {
     TextInput,
     Image,
   } from 'react-native';
-  import React, {useState} from 'react'
+  import React, { useState } from 'react';
   
   import { NavigationContainer } from '@react-navigation/native';
-  import {createNativeStackNavigator} from '@react-navigation/native-stack'
+  import { createNativeStackNavigator } from '@react-navigation/native-stack';
   
   const Stack = createNativeStackNavigator();
   
-  const HomeScreen = ({route, navigation}) =>
-  {
+  const HomeScreen = ({ route, navigation }) => {
     return (
-      <View>
-        <Image source={require("./icon.png")}/>
-        <Text>Hello Again</Text>
-        <Text>Log in to your account</Text>
-        <View>
-          <Image source={require("./Vector.png")}/>
-          <TextInput value="Enter your email address"/>
+      <View
+        style={
+          (styles.container,
+          {
+            alignItems: 'center',
+            backgroundColor: '#fff',
+          })
+        }>
+        <Image
+          source={require('./icon.png')}
+          style={{
+            marginTop: 40,
+          }}
+        />
+        <Text
+          style={{
+            fontWeight: 700,
+            fontSize: 25,
+            marginTop: 12,
+          }}>
+          Hello Again!
+        </Text>
+        <Text
+          style={{
+            fontSize: 12,
+            color: '#666',
+            fontWeight: 500,
+            opacity: '60%',
+            marginTop: 2,
+          }}>
+          Log in to your account
+        </Text>
+        <View
+          style={{
+            marginTop: 40,
+            flexDirection: 'row',
+            justifyContent: 'flex-start',
+            alignItems: 'center',
+            backgroundColor: 'none',
+            borderRadius: 10,
+            borderColor: '#000',
+            borderWidth: 1,
+            padding: 10,
+            width: '80%',
+            opacity: '60%',
+          }}>
+          <Image source={require('./Vector.png')} />
+          <TextInput
+            value="Enter your email address"
+            style={{
+              marginLeft: 10,
+            }}
+          />
         </View>
   
-        <View>
-          <Image source={require("./lock.png")}/>
-          <TextInput value="Enter your password"/>
-           <Image source={require("./eye.png")}/>
+        <View
+          style={{
+            marginTop: 20,
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            backgroundColor: 'none',
+            borderRadius: 10,
+            borderColor: '#000',
+            borderWidth: 1,
+            padding: 10,
+            width: '80%',
+            opacity: '60%',
+          }}>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'flex-start',
+              alignItems: 'center',
+            }}>
+            <Image source={require('./lock.png')} />
+            <TextInput
+              value="Enter your password"
+              style={{
+                marginLeft: 10,
+              }}
+            />
+          </View>
+          <TouchableOpacity>
+            <Image source={require('./eye.png')} />
+          </TouchableOpacity>
         </View>
   
-         <Text>Forgot password</Text>
+        <TouchableOpacity
+          style={{
+            marginTop: 9,
+            width: '80%',
+            alignItems: 'flex-end',
+          }}>
+          <Text
+            style={{
+              color: 'cyan',
+            }}>
+            Forgot password?
+          </Text>
+        </TouchableOpacity>
   
-         <TouchableOpacity>
-          <Text>
+        <TouchableOpacity
+          style={{
+            width: '80%',
+            backgroundColor: 'cyan',
+            height: 40,
+            borderRadius: 10,
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginTop: 20,
+          }}>
+          <Text
+            style={{
+              color: '#fff',
+            }}>
             Continue
           </Text>
-         </TouchableOpacity>
+        </TouchableOpacity>
   
-         <View>
+        <View
+          style={{
+            marginTop: 30,
+          }}>
           <Text>or</Text>
-         </View>
+        </View>
   
-         <View>
-          <Image source={require("./google.png")}/>
-          <Image source={require("./face.png")}/>
-          <Image source={require("./apple.png")}/>
-         </View>
+        <View
+          style={{
+            marginTop: 8,
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <Image
+            source={require('./google.png')}
+            style={{
+              marginLeft: 4,
+              marginRight: 4,
+            }}
+          />
+          <Image
+            source={require('./face.png')}
+            style={{
+              marginLeft: 4,
+              marginRight: 4,
+            }}
+          />
+          <Image
+            source={require('./apple.png')}
+            style={{
+              marginLeft: 4,
+              marginRight: 4,
+            }}
+          />
+        </View>
       </View>
-    )
-  }
+    );
+  };
   
   export default function App() {
     return (
       <NavigationContainer>
         <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} options={{
-          headerShown: false
-        }}></Stack.Screen>
+          <Stack.Screen
+            name="Home"
+            component={HomeScreen}
+            options={{
+              headerShown: false,
+            }}></Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>
     );
