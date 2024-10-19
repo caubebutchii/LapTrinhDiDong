@@ -71,6 +71,218 @@ import {
     );
   };
   const Stack = createNativeStackNavigator();
+  
+  const List = ({ route, navigation }) => {
+    // useEffect(()=> {
+    //   setData1(data)
+    // }, data1 )
+    const[data1, setData1] = useState([])
+    
+    const data = [
+      {
+        id: '1',
+        image: require('./bione-removebg-preview(1).png'),
+        name: 'Pinarello',
+        price: 1800,
+        type: 'Roadbike',
+        des: 'It is a very important form of writing as we write almost everything in paragraphs, be it an answer, essay, story, emails, etc.',
+        discount: '15',
+        liked: false,
+      },
+      {
+        id: '2',
+        image: require('./bione-removebg-preview(1).png'),
+        name: 'Pina Mountain',
+        price: 1700,
+        type: 'Mountain',
+        des: 'It is a very important form of writing as we write almost everything in paragraphs, be it an answer, essay, story, emails, etc.',
+        discount: '15',
+        liked: false,
+      },
+      {
+        id: '3',
+        image: require('./bithree_removebg-preview.png'),
+        name: 'Pina bike',
+        price: 1800,
+        type: 'Roadbike',
+        des: 'It is a very important form of writing as we write almost everything in paragraphs, be it an answer, essay, story, emails, etc.',
+        discount: '15',
+        liked: false,
+      },
+      {
+        id: '4',
+        image: require('./bitwo-removebg-preview.png'),
+        name: 'Pinarello',
+        price: 1800,
+        type: 'Roadbike',
+        des: 'It is a very important form of writing as we write almost everything in paragraphs, be it an answer, essay, story, emails, etc.',
+        discount: '15',
+        liked: false,
+      },
+      {
+        id: '5',
+        image: require('./bithree_removebg-preview.png'),
+        name: 'Pinarello',
+        price: 1800,
+        type: 'Roadbike',
+        des: 'It is a very important form of writing as we write almost everything in paragraphs, be it an answer, essay, story, emails, etc.',
+        discount: '15',
+        liked: false,
+      },
+      {
+        id: '6',
+        image: require('./bione-removebg-preview.png'),
+        name: 'Pinarello',
+        price: 1800,
+        type: 'Roadbike',
+        des: 'It is a very important form of writing as we write almost everything in paragraphs, be it an answer, essay, story, emails, etc.',
+        discount: '15',
+        liked: false,
+      },
+    ];
+  const [isPress, setIsPress]= useState(1)
+    return (
+      <ScrollView
+        style={{
+          alignItems: 'center',
+          padding: -10,
+          margin: -10
+        }}>
+        <View
+          style={{
+            justifyContent: 'flex-start',
+          }}>
+          <Text
+            style={{
+              color: '#E94141',
+              fontSize: 20,
+              lineHeight: 20,
+              marginTop: 10,
+              fontFamily: 'UBUNTU',
+              fontWeight: 700,
+              marginTop: 30,
+            }}>
+            The world’s Best Bike
+          </Text>
+        </View>
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-evenly',
+            marginTop: 30,
+          }}>
+          <TouchableOpacity
+            style={{
+              marginLeft: 4,
+              marginRight: 4,
+              backgroundColor: 'none',
+              borderRadius: 5,
+              borderColor: '#E9414187',
+              height: 32,
+              width: 90,
+              justifyContent: 'center',
+              alignItems: 'center',
+              borderWidth: 1,
+            }}
+            onPress={() => {
+              setIsPress(1)
+            }}>
+            <Text
+              style={{
+                fontSize: 18,
+                textAlign: 'center',
+                fontFamily: 'VT323',
+                fontWeight: 400,
+                color: '#E94141',
+              }}>
+              All
+            </Text>
+          </TouchableOpacity>
+  
+          <TouchableOpacity
+            style={{
+              marginLeft: 4,
+              marginRight: 4,
+              backgroundColor: 'none',
+              borderRadius: 5,
+              borderColor: '#E9414187',
+              height: 32,
+              width: 90,
+              justifyContent: 'center',
+              alignItems: 'center',
+              borderWidth: 1,
+            }}
+            onPress={() => {
+              setIsPress(2)
+             setData1(data.filter(item=>item.type.includes('Roadbike')))
+            }}>
+            <Text
+              style={{
+                fontSize: 18,
+  
+                textAlign: 'center',
+  
+                fontFamily: 'VT323',
+                fontWeight: 400,
+                color: '#BEB6B6',
+              }}>
+              Roadbike
+            </Text>
+          </TouchableOpacity>
+  
+          <TouchableOpacity
+            style={{
+              marginLeft: 4,
+              marginRight: 4,
+              backgroundColor: 'none',
+              borderRadius: 5,
+              borderColor: '#E9414187',
+              height: 32,
+              width: 90,
+              justifyContent: 'center',
+              alignItems: 'center',
+              borderWidth: 1,
+            }}
+            onPress={() => {
+              setIsPress(3)
+            setData1(data.filter(item=>item.type.includes('Mountain')))
+            }}>
+            <Text
+              style={{
+                fontSize: 18,
+  
+                textAlign: 'center',
+  
+                fontFamily: 'VT323',
+                fontWeight: 400,
+                color: '#BEB6B6',
+              }}>
+              Mountain
+            </Text>
+          </TouchableOpacity>
+        </View>
+  
+        <View
+          style={{
+            flexDirection: 'row',
+              marginRight: -10
+          }}>
+          <FlatList
+            data={isPress===1?data:data1}
+            renderItem={({ item }) => (
+              <Item item={item} navigation={navigation} />
+            )}
+            keyExtractor={(item) => item.id.toString()}
+            numColumns={2}
+            style={{
+              justifyContent: 'space-between'
+            }}
+          />
+        </View>
+      </ScrollView>
+    );
+  };
   const HomeScreen = ({ navigation }) => {
     return (
       <ScrollView
