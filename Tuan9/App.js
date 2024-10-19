@@ -12,6 +12,160 @@ import {
   
   import { NavigationContainer } from '@react-navigation/native';
   import { createNativeStackNavigator } from '@react-navigation/native-stack';
+  
+  const Detail = ({ route, navigation }) => {
+    const { item } = route.params;
+    return (
+      <ScrollView
+        style={{
+          alignItems: 'center',
+          justifyContent: 'flex-start',
+          paddingTop: 10,
+          paddingLeft: 8,
+          paddingRight: 8,
+        }}>
+        <View
+          style={{
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: '#E941411A',
+            height: 340,
+            borderRadius: 50,
+          }}>
+          <Image
+            source={item.image}
+            style={{
+              height: 350,
+              resizeMode: 'contain'
+            }}
+          />
+        </View>
+  
+        <View
+          style={{
+            marginTop: 20,
+          }}>
+          <Text
+            style={{
+              fontSize: 28,
+              lineHeight: 26,
+  
+              fontFamily: 'UBUNTU',
+              fontWeight: 700,
+              width: 200,
+            }}>
+            {item.name}
+          </Text>
+        </View>
+  
+        <View
+          style={{
+            marginTop: 30,
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'flex-start',
+          }}>
+          <Text
+            style={{
+              fontSize: 20,
+              lineHeight: 20,
+              opacity: '59%',
+              fontFamily: 'Voltaire',
+              fontWeight: 400,
+            }}>
+            {item.discount}% OFF |
+            {() => {
+              (item.price * item.discount) / 100;
+            }}
+          </Text>
+  
+          <Text
+            style={{
+              fontSize: 20,
+              lineHeight: 20,
+              fontFamily: 'Voltaire',
+              fontWeight: 400,
+            }}>
+            {item.price}$
+          </Text>
+        </View>
+        <View
+          style={{
+            marginTop: 20,
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'flex-start',
+          }}>
+          <Text
+            style={{
+              fontSize: 20,
+              lineHeight: 20,
+              fontFamily: 'Voltaire',
+              fontWeight: 400,
+            }}>
+            Description
+          </Text>
+        </View>
+        <View
+          style={{
+            marginTop: 20,
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'flex-start',
+            opacity: '56%',
+          }}>
+          <Text
+            style={{
+              fontSize: 16,
+              lineHeight: 16,
+              fontFamily: 'Voltaire',
+              fontWeight: 400,
+            }}>
+            {item.des}
+          </Text>
+        </View>
+  
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-around',
+            marginTop: 30,
+            marginBottom: 30,
+          }}>
+          <TouchableOpacity>
+            <Image source={require('./heart.png')} />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{
+              backgroundColor: 'red',
+              borderRadius: 30,
+              borderColor: 'red',
+              height: 30,
+              width: 200,
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+            onPress={() => {
+              navigation.navigate('List');
+            }}>
+            <Text
+              style={{
+                fontSize: 20,
+  
+                textAlign: 'center',
+  
+                fontFamily: 'VT323',
+                fontWeight: 400,
+                color: '#fff',
+              }}>
+              Add to cart
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
+    );
+  };
   const Item = ({ item, navigation }) => {
     return (
       <TouchableOpacity style={{
@@ -71,7 +225,6 @@ import {
     );
   };
   const Stack = createNativeStackNavigator();
-  
   const List = ({ route, navigation }) => {
     // useEffect(()=> {
     //   setData1(data)
@@ -283,6 +436,7 @@ import {
       </ScrollView>
     );
   };
+  
   const HomeScreen = ({ navigation }) => {
     return (
       <ScrollView
@@ -379,9 +533,8 @@ import {
       </ScrollView>
     );
   };
-
   
-export default function App() {
+  export default function App() {
     return (
       <NavigationContainer>
         <Stack.Navigator>
@@ -393,7 +546,21 @@ export default function App() {
             }}
           />
   
-          
+          <Stack.Screen
+            name="List"
+            component={List}
+            options={{
+              headerShown: false,
+            }}
+          />
+  
+          <Stack.Screen
+            name="Detail"
+            component={Detail}
+            options={{
+              headerShown: false,
+            }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     );
