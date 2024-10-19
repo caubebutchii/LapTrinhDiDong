@@ -12,7 +12,65 @@ import {
   
   import { NavigationContainer } from '@react-navigation/native';
   import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
+  const Item = ({ item, navigation }) => {
+    return (
+      <TouchableOpacity style={{
+        
+      }}
+        onPress={() => {
+          navigation.navigate('Detail', {
+            item,
+          });
+        }}>
+        <View
+          style={{
+            justifyContent: 'flex-start',
+            alignItems: 'center',
+            backgroundColor: '#F7BA8326',
+            borderRadius: '10',
+            width: 142,
+            marginTop: 10,
+            marginRight:4,
+            height: 180,
+            position: "relative"
+          }}>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'flex-start',
+  
+            }}>
+            <TouchableOpacity style={{position: 'absolute', top: 2, left: 2}}>
+              <Image source={require('./heart.png')} />
+            </TouchableOpacity>
+            <Image
+              source={item.image}
+              style={{
+                height: 120,
+                resizeMode: 'contain',
+                marginTop: 6
+              }}
+            />
+          </View>
+  
+          <Text>{item.name}</Text>
+          <View
+            style={{
+              flexDirection: 'row',
+            }}>
+            <Text
+              style={{
+                color: '#F7BA83',
+              }}>
+              $
+            </Text>
+            <Text>{item.price}</Text>
+          </View>
+        </View>
+      </TouchableOpacity>
+    );
+  };
+  const Stack = createNativeStackNavigator();
   const HomeScreen = ({ navigation }) => {
     return (
       <ScrollView
