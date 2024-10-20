@@ -242,6 +242,7 @@ const List = ({ route, navigation }) => {
         alignItems: 'center',
         padding: -10,
         margin: -10,
+        marginBottom: 40
       }}>
       <View
         style={{
@@ -333,7 +334,7 @@ const HomeScreen = ({ navigation }) => {
           lineHeight: 20,
           height: 87,
           textAlign: 'center',
-          marginTop: 61,
+          marginTop: 150,
           fontFamily: 'VT323',
           fontWeight: 400,
         }}>
@@ -394,6 +395,7 @@ const HomeScreen = ({ navigation }) => {
             width: 280,
             justifyContent: 'center',
             alignItems: 'center',
+            marginBottom: 20
           }}
           onPress={() => {
             navigation.navigate('List');
@@ -438,9 +440,7 @@ export default function App() {
           <Stack.Screen
             name="List"
             component={List}
-            options={{
-              headerShown: false,
-            }}
+            
           />
 
           <Stack.Screen
