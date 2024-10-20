@@ -76,7 +76,7 @@ const Detail = ({ route, navigation }) => {
           }}>
           {item.discount}% OFF |
           {
-            (item.price * item.discount) / 100
+            (item.price * (100- item.discount)) / 100
           }$
         </Text>
 
