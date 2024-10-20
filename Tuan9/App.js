@@ -8,13 +8,13 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
-import { useEffect, useState } from 'react';
-import { useFonts, Voltaire_400Regular } from '@expo-google-fonts/voltaire';
+import { useEffect, useState, useContext, createContext } from 'react';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
+const imgC = createContext();
 const Detail = ({ route, navigation }) => {
+  const imgs = useContext(imgC)
   const { item } = route.params;
   return (
     <ScrollView
@@ -34,7 +34,7 @@ const Detail = ({ route, navigation }) => {
           borderRadius: 50,
         }}>
         <Image
-          source={item.image}
+          source={imgs[item.image]}
           style={{
             height: 350,
             resizeMode: 'contain',
@@ -75,9 +75,9 @@ const Detail = ({ route, navigation }) => {
             fontWeight: 400,
           }}>
           {item.discount}% OFF |
-          {() => {
-            (item.price * item.discount) / 100;
-          }}
+          {
+            (item.price * item.discount) / 100
+          }$
         </Text>
 
         <Text
@@ -86,6 +86,7 @@ const Detail = ({ route, navigation }) => {
             lineHeight: 20,
             fontFamily: 'Voltaire',
             fontWeight: 400,
+            marginLeft: 30
           }}>
           {item.price}$
         </Text>
@@ -168,6 +169,7 @@ const Detail = ({ route, navigation }) => {
   );
 };
 const Item = ({ item, navigation }) => {
+  const imgs = useContext(imgC)
   return (
     <TouchableOpacity
       style={{}}
@@ -197,7 +199,7 @@ const Item = ({ item, navigation }) => {
             <Image source={require('./heart.png')} />
           </TouchableOpacity>
           <Image
-            source={item.image}
+            source={imgs[item.image]}
             style={{
               height: 120,
               resizeMode: 'contain',
@@ -225,11 +227,12 @@ const Item = ({ item, navigation }) => {
 };
 const Stack = createNativeStackNavigator();
 const List = ({ route, navigation }) => {
+  const [data1, setData1] = useState([]);
   const [data, setData] = useState([]);
   fetch('https://670879498e86a8d9e42f0301.mockapi.io/bikes')
     .then((res) => res.json())
     .then((data) => {
-      setData(data)
+      setData(data);
     });
 
   const [isPress, setIsPress] = useState(1);
@@ -414,42 +417,42 @@ const HomeScreen = ({ navigation }) => {
 };
 
 export default function App() {
-  const [fontsLoaded] = useFonts({
-    Voltaire_400Regular,
-  });
-
-  if (!fontsLoaded) {
-    return null;
-  }
-
+  const imgs = {
+    './bione-removebg-preview(1).png': require('./bione-removebg-preview(1).png'),
+    './bithree_removebg-preview.png': require('./bithree_removebg-preview.png'),
+    './bitwo-removebg-preview.png': require('./bitwo-removebg-preview.png'),
+    './bione-removebg-preview.png': require('./bione-removebg-preview.png'),
+  };
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{
-            headerShown: false,
-          }}
-        />
+    <imgC.Provider value={imgs}>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Home"
+            component={HomeScreen}
+            options={{
+              headerShown: false,
+            }}
+          />
 
-        <Stack.Screen
-          name="List"
-          component={List}
-          options={{
-            headerShown: false,
-          }}
-        />
+          <Stack.Screen
+            name="List"
+            component={List}
+            options={{
+              headerShown: false,
+            }}
+          />
 
-        <Stack.Screen
-          name="Detail"
-          component={Detail}
-          options={{
-            headerShown: false,
-          }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+          <Stack.Screen
+            name="Detail"
+            component={Detail}
+            options={{
+              headerShown: false,
+            }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </imgC.Provider>
   );
 }
 
