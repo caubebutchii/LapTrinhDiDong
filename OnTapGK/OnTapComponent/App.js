@@ -99,6 +99,13 @@ import {
       for (let i = 0; i < text; i++) res += 'text ';
       setRes(res);
     };
+    const [selectedId, setSelectedId] = useState('');
+  
+    const radioButtons = [
+      { id: '1', label: 'Option 1' },
+      { id: '2', label: 'Option 2' },
+      { id: '3', label: 'Option 3' },
+    ];
     return (
       <View>
         <Text>{res}</Text>
@@ -144,6 +151,13 @@ import {
           }}>
           <Text>checkbox2</Text>
           <CheckBox title="" value={cb2} onValueChange={() => setcb2(!cb2)} />
+        </View>
+        <View style={{ padding: 20 }}>
+          <RadioGroup
+            radioButtons={radioButtons}
+            onPress={setSelectedId}
+            selectedId={selectedId}
+          />
         </View>
   
         <View
