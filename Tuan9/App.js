@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   ScrollView,
   StyleSheet,
+  TextInput,
   View,
 } from 'react-native';
 import { useEffect, useState, useContext, createContext } from 'react';
@@ -14,7 +15,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 const imgC = createContext();
 const Detail = ({ route, navigation }) => {
-  const imgs = useContext(imgC)
+  const imgs = useContext(imgC);
+  const [searchText, setSearchText] = useState('');
   const { item } = route.params;
   return (
     <ScrollView
@@ -33,6 +35,16 @@ const Detail = ({ route, navigation }) => {
           height: 340,
           borderRadius: 50,
         }}>
+        <TextInput
+          style={styles.input}
+          placeholder="Search..."
+          placeholderTextColor="gray"
+          value={searchText}
+          onChangeText={setSearchText}
+        />
+        <TouchableOpacity style={styles.iconContainer}>
+          a
+        </TouchableOpacity>
         <Image
           source={imgs[item.image]}
           style={{
@@ -74,10 +86,7 @@ const Detail = ({ route, navigation }) => {
             fontFamily: 'Voltaire',
             fontWeight: 400,
           }}>
-          {item.discount}% OFF |
-          {
-            (item.price * (100- item.discount)) / 100
-          }$
+          {item.discount}% OFF |{(item.price * (100 - item.discount)) / 100}$
         </Text>
 
         <Text
@@ -86,7 +95,7 @@ const Detail = ({ route, navigation }) => {
             lineHeight: 20,
             fontFamily: 'Voltaire',
             fontWeight: 400,
-            marginLeft: 30
+            marginLeft: 30,
           }}>
           {item.price}$
         </Text>
@@ -169,7 +178,7 @@ const Detail = ({ route, navigation }) => {
   );
 };
 const Item = ({ item, navigation }) => {
-  const imgs = useContext(imgC)
+  const imgs = useContext(imgC);
   return (
     <TouchableOpacity
       style={{}}
@@ -242,7 +251,7 @@ const List = ({ route, navigation }) => {
         alignItems: 'center',
         padding: -10,
         margin: -10,
-        marginBottom: 40
+        marginBottom: 40,
       }}>
       <View
         style={{
@@ -395,7 +404,7 @@ const HomeScreen = ({ navigation }) => {
             width: 280,
             justifyContent: 'center',
             alignItems: 'center',
-            marginBottom: 20
+            marginBottom: 20,
           }}
           onPress={() => {
             navigation.navigate('List');
@@ -437,11 +446,7 @@ export default function App() {
             }}
           />
 
-          <Stack.Screen
-            name="List"
-            component={List}
-            
-          />
+          <Stack.Screen name="List" component={List} />
 
           <Stack.Screen
             name="Detail"
@@ -497,4 +502,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderWidth: 1,
   },
+   input: {
+        flex: 1,
+        height: 40,
+        fontSize: 16,
+    },
+    iconContainer: {
+        paddingLeft: 10,
+    },
 });
