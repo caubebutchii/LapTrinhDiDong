@@ -1,0 +1,14 @@
+{
+    "dependencies": {
+        "axios": "*",
+        "redux": "5.0.0",
+        "redux-saga": "*",
+        "react-redux": "9.0.0",
+        "@types/react": "18.2.41",
+        "@reduxjs/toolkit": "*",
+        "@types/react-dom": "18.2.17",
+        "@expo/vector-icons": "^14.0.3",
+        "react-native-paper": "4.9.2",
+        "redux-saga/effects": "*"
+    }
+}
